@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidStudio | Premium Video Editing Services</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="VidStudio is a premium video editing agency transforming ideas into high-impact visual stories. Specializing in cinematic ads, social media reels, corporate promos, automotive, and sports content.">
+  <meta name="keywords" content="video editing services, cinematic video editor, youtube editing, reels editing, automotive cinematic, corporate promo, explainer videos, color grading, sound design">
+  <meta name="author" content="VidStudio">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VidStudio | Professional Video Editing Services">
+  <meta property="og:description" content="Premium, fast, and high-impact video editing tailored for creators, brands, and agencies. Get a free quote today.">
+  <meta property="og:image" content="logo.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Premium Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER / NAVIGATION BAR ================= -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#home" class="logo-area">
+        <!-- Navbar: Icon + Text -->
+        <img src="logo.png" alt="VidStudio Icon" class="logo-img">
+        <span class="logo-text-3d"><span class="logo-vid">VID</span><span class="logo-studio">STUDIO</span></span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#service" class="nav-link">Service</a></li>
+          <li><a href="#project" class="nav-link">Project</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#career" class="nav-link">Career</a></li>
+          <li><a href="#contact" class="nav-link nav-btn-contact">Contact</a></li>
+          <!-- WhatsApp inline in nav -->
+          <li>
+            <div class="whatsapp-nav-widget" id="whatsappWidget">
+              <div class="whatsapp-badge">
+                <span class="pulse-ring"></span>
+                <span class="badge-dot">1</span>
+              </div>
+              <button class="whatsapp-trigger" aria-label="Chat on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </button>
+              <!-- Chat Dialog Popover -->
+              <div class="whatsapp-popover" id="whatsappPopover">
+                <div class="popover-header">
+                  <div class="avatar-status">
+                    <img src="logo.svg" alt="VidStudio Avatar" class="popover-avatar">
+                    <span class="status-dot online"></span>
+                  </div>
+                  <div class="popover-meta">
+                    <h4>VidStudio Support</h4>
+                    <p><span class="pulsing-green"></span> Online &amp; Ready</p>
+                  </div>
+                  <button class="close-popover" id="closePopover"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="popover-body">
+                  <p class="chat-bubble received">Hey there! 👋 Interested in leveling up your videos? Let us know what project you're working on!</p>
+                </div>
+                <div class="popover-footer">
+                  <input type="text" id="whatsappInput" placeholder="Type a message..." aria-label="WhatsApp Message input">
+                  <button id="sendWhatsappBtn" class="send-btn" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay Navigation -->
+  <nav class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#home" class="mobile-link active">Home</a></li>
+      <li><a href="#service" class="mobile-link">Service</a></li>
+      <li><a href="#project" class="mobile-link">Project</a></li>
+      <li><a href="#about" class="mobile-link">About Us</a></li>
+      <li><a href="#career" class="mobile-link">Career</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- WhatsApp widget moved into header nav (above) -->
+
+  <!-- ================= HOME SECTION ================= -->
+  <section id="home" class="hero-section">
+    <div class="hero-content-container container">
+
+      <!-- LEFT: Text Content -->
+      <div class="hero-text-content">
+        <div class="hero-badge">
+          <span class="badge-accent" id="heroBadge">PREMIUM POST-PRODUCTION STUDIO</span>
+        </div>
+        <h1 class="hero-title" id="heroTitle">
+          Bring your footage<br>
+          to life,<br>
+          <span class="gradient-text">cinematically.</span>
+        </h1>
+        <p class="hero-subtitle" id="heroSubtitle">
+          High-end video editing and precision color grading designed to elevate your content. From raw footage to a polished masterpiece, VidStudio delivers seamless cuts, vibrant colors, and expert pacing for brands, creators, and filmmakers worldwide.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get Started &rarr;</a>
+          <a href="#project" class="btn-secondary">View Our Work</a>
+        </div>
+        <!-- Hero Stats -->
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-big">500+</span>
+            <span class="stat-sub">Videos Produced</span>
+          </div>
+          <div class="stat">
+            <span class="stat-big">50+</span>
+            <span class="stat-sub">Global Clients</span>
+          </div>
+          <div class="stat">
+            <span class="stat-big">4.9★</span>
+            <span class="stat-sub">Client Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 4 Continuously Floating Video Cards -->
+      <div class="hero-video-grid">
+        <!-- Card 1 - Top Left (floats up) -->
+        <div class="hero-vid-card vid-card-1">
+          <div class="vid-card-inner">
+            <video autoplay loop muted playsinline class="hero-card-video">
+              <source src="Travel-Cinematic.mp4" type="video/mp4">
+            </video>
+            <div class="vid-card-label">✈️ Travel Cinematic</div>
+          </div>
+        </div>
+        <!-- Card 2 - Top Right (floats down) -->
+        <div class="hero-vid-card vid-card-2">
+          <div class="vid-card-inner">
+            <video autoplay loop muted playsinline class="hero-card-video">
+              <source src="Automotive.mp4" type="video/mp4">
+            </video>
+            <div class="vid-card-label">🚗 Automotive</div>
+          </div>
+        </div>
+        <!-- Card 3 - Bottom Left (floats down delayed) -->
+        <div class="hero-vid-card vid-card-3">
+          <div class="vid-card-inner">
+            <video autoplay loop muted playsinline class="hero-card-video">
+              <source src="Fitness.mp4" type="video/mp4">
+            </video>
+            <div class="vid-card-label">🏋️ Fitness</div>
+          </div>
+        </div>
+        <!-- Card 4 - Bottom Right (floats up delayed) -->
+        <div class="hero-vid-card vid-card-4">
+          <div class="vid-card-inner">
+            <video autoplay loop muted playsinline class="hero-card-video">
+              <source src="Motion-Graphics.mp4" type="video/mp4">
+            </video>
+            <div class="vid-card-label">🎨 Motion Graphics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Scroll Indicator -->
+    <div class="scroll-indicator-container">
+      <a href="#service" class="scroll-indicator" aria-label="Scroll Down">
+        <span class="mouse-icon"><span class="wheel"></span></span>
+        <span class="scroll-text">Scroll Down</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= SERVICE & PRICING SECTION ================= -->
+  <section id="service" class="section service-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">OUR SPECIALTIES</span>
+        <h2 class="section-title">CREATIVE CAPABILITIES &amp; FLEXIBLE ESTIMATES</h2>
+        <p class="section-desc">Choose from our broad spectrum of high-end editing categories or use our interactive pricing estimator for custom deliverables tailored to your exact budget.</p>
+      </div>
+
+      <div class="service-restructured-layout">
+        <!-- 1. Top Section: 2 consolidated category selection cards -->
+        <div class="service-categories-row">
+          <div class="categories-header text-center">
+            <h3>Select a Service Category</h3>
+            <p>Select a category below to explore our premium 3-tier packages and deliverables.</p>
+          </div>
+          <div class="service-categories-list-horizontal" id="servicesList">
+            <div class="service-card-horizontal active" data-category="professional_edit" id="catProfessional">
+              <div class="card-icon"><i class="fa-solid fa-clapperboard"></i></div>
+              <div class="card-info">
+                <h4>Professional Video Edit, YouTube Video Editing</h4>
+                <p>Cinematic cuts, high-end YouTube edits, personal branding, corporate promos, and full scale storytelling.</p>
+              </div>
+              <span class="active-badge">Active Category</span>
+            </div>
+            
+            <div class="service-card-horizontal" data-category="social_shorts" id="catSocial">
+              <div class="card-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              <div class="card-info">
+                <h4>YouTube Shorts, Instagram Reels, TikTok</h4>
+                <p>High-retention social content, custom hooks, dynamic overlays, subtitles, and viral video formats.</p>
+              </div>
+              <span class="active-badge">Active Category</span>
+            </div>
+
+            <div class="service-card-horizontal" data-category="color_grading" id="catColorGrading">
+              <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+              <div class="card-info">
+                <h4>Color Grading</h4>
+                <p>Premium color correction, custom LUT design, shot matching, cinematic grading, and visual enhancement.</p>
+              </div>
+              <span class="active-badge">Active Category</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Bottom Section: 3-Tier Pricing Packages Grid -->
+        <div class="pricing-packages-container">
+          <div class="pricing-packages-grid" id="pricingPackagesGrid">
+            <!-- Basic, Standard, Premium package cards rendered dynamically by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECT SECTION (PORTFOLIO) ================= -->
+  <section id="project" class="section project-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">OUR WORKS</span>
+        <h2 class="section-title">FEATURED VIDEO PROJECTS</h2>
+        <p class="section-desc">Browse our curated showreel of successfully completed video edits. All works are high-fidelity streaming presentations protected securely for viewing purposes only.</p>
+      </div>
+
+      <!-- Portfolio Category Tabs -->
+      <div class="portfolio-tabs-container">
+        <div class="portfolio-tabs">
+          <button class="tab-btn active" data-filter="all">All Projects</button>
+          <button class="tab-btn" data-filter="cinematic">Cinematic &amp; Creative</button>
+          <button class="tab-btn" data-filter="automotive">Automotive</button>
+          <button class="tab-btn" data-filter="social">Social &amp; Ads</button>
+        </div>
+      </div>
+
+      <!-- Grid of Secure Video Players -->
+      <div class="portfolio-grid" id="portfolioGrid">
+        
+        <!-- Project Card 1: Cinematic Travel -->
+        <div class="project-card" data-category="cinematic">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer (anti-right-click & anti-direct link interaction) -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="9d8wWcJLnFI" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800" alt="Cinematic Travel Video Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Cinematic &amp; Creative</span>
+            <h3>Nomads of the Highlands</h3>
+            <p>Vibrant travel documentary featuring intensive custom color-grading, cinematic overlays, and immersive soundscapes.</p>
+          </div>
+        </div>
+
+        <!-- Project Card 2: Automotive / Drifting Cinematic -->
+        <div class="project-card" data-category="automotive">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="ScMzIvxBSi4" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=800" alt="Automotive Cinematic Video Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Automotive / Car Content</span>
+            <h3>Tokyo Drift: Midnight Symphony</h3>
+            <p>Rhythmic, fast-paced cinematic drift showcase with high-speed transitions, frame cuts, and custom combustion engine sound design.</p>
+          </div>
+        </div>
+
+        <!-- Project Card 3: Social Media Promo Ad -->
+        <div class="project-card" data-category="social">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="F2478V3WkZc" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800" alt="Tech Social Media Ad Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Social &amp; Ads</span>
+            <h3>Apex Wearables Commercial</h3>
+            <p>Modern tech brand promotional video with customized sleek typographic slides, motion callouts, and clean studio layouts.</p>
+          </div>
+        </div>
+
+        <!-- Project Card 4: Fitness Cinematic -->
+        <div class="project-card" data-category="cinematic">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="qE_8L3yq1qU" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800" alt="Fitness Cinematic Video Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Fitness &amp; Creative</span>
+            <h3>Beyond Limits Gym Cinematic</h3>
+            <p>High-energy workout trailer emphasizing rapid sync-beat transition cuts, sub-bass enhancement, and powerful high-contrast color grading.</p>
+          </div>
+        </div>
+
+        <!-- Project Card 5: Automotive Car Review -->
+        <div class="project-card" data-category="automotive">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="cI67wY6o27U" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800" alt="Supercar Showcase Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Automotive / Car Content</span>
+            <h3>Supercar Cinematic: Hyperion V12</h3>
+            <p>Immersive, commercial-grade showroom and track cinematic showcasing a premium finish, neon lens flares, and bespoke camera tracks.</p>
+          </div>
+        </div>
+
+        <!-- Project Card 6: YouTube Course Intro -->
+        <div class="project-card" data-category="social">
+          <div class="video-player-outer">
+            <!-- Secure Cover Layer -->
+            <div class="secure-overlay">
+              <span class="secure-tag"><i class="fa-solid fa-lock"></i> Protected Playback</span>
+              <button class="secure-play-btn" data-youtube-id="L_LUpn-6y0E" aria-label="Play Portfolio Video"><i class="fa-solid fa-play"></i></button>
+            </div>
+            
+            <div class="iframe-placeholder">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" alt="Online Course Intro Thumbnail" class="thumbnail-img">
+            </div>
+          </div>
+          
+          <div class="project-details">
+            <span class="project-cat">Social &amp; Ads</span>
+            <h3>Masterclass Creator Series</h3>
+            <p>Educational intro course utilizing zoom-in cuts, graphic illustrations, dynamic popups, and light acoustic background soundtracks.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Secure Video Modal (for viewing only) -->
+  <div class="secure-modal" id="videoModal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog-container">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 id="modalTitle">Project Playback</h3>
+          <button class="modal-close" id="modalCloseBtn" aria-label="Close Video Modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <!-- Video Safe Holder -->
+        <div class="modal-video-viewport">
+          <!-- Absolute Transparent Overlay (covers video area, prevents context-clicks or clicking standard player overlays) -->
+          <div class="modal-security-glass" id="modalSecurityGlass"></div>
+          <!-- Youtube Modal Container -->
+          <div id="modalPlayer" class="modal-iframe"></div>
+        </div>
+        
+        <div class="modal-footer">
+          <p><i class="fa-solid fa-shield-halved"></i> Streaming only. Download or local extraction has been deactivated to protect our creators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ABOUT US SECTION ================= -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Text Content Panel -->
+        <div class="about-text-panel">
+          <span class="section-subtitle">CREATIVE FORCE</span>
+          <h2 class="section-title" id="aboutTitle">MEET THE VIDSTUDIO TEAM</h2>
+          <div class="about-copy">
+            <p class="highlight-p" id="aboutCopy1">
+              We are a creative video editing team passionate about turning ideas into powerful visual stories. From cinematic commercials to social media content, we help brands, businesses, creators, and influencers bring their vision to life through high-quality editing and storytelling.
+            </p>
+            <p id="aboutCopy2">
+              Our services include YouTube video editing, promotional videos, corporate content, car cinematic videos, fitness videos, reels, shorts, documentaries, travel videos, and social media advertisements. We focus on clean editing, smooth transitions, professional color grading, sound design, and engaging visuals that capture attention.
+            </p>
+            <p id="aboutCopy3">
+              Whether you need content for business growth, personal branding, or entertainment, we deliver creative, fast, and reliable video solutions tailored to your goals.
+            </p>
+            <span class="about-signature" id="aboutSignature">Your story deserves more than just editing — it deserves impact.</span>
+          </div>
+        </div>
+        
+        <!-- Visual Presentation / Stats Panel -->
+        <div class="about-visual-panel">
+          <div class="glass-photo-card">
+            <div class="card-glow"></div>
+            <video autoplay loop muted playsinline class="studio-photo">
+              <source src="studio-video.mp4" type="video/mp4">
+            </video>
+            
+            <div class="floating-badge-stats">
+              <div class="stat-item">
+                <span class="stat-num">500+</span>
+                <span class="stat-lbl">Videos Delivered</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-num">4.9★</span>
+                <span class="stat-lbl">Client Rating</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAREER SECTION ================= -->
+  <section id="career" class="section career-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">JOIN THE SQUAD</span>
+        <h2 class="section-title">CAREER OPPORTUNITIES</h2>
+      </div>
+
+      <div class="career-card-center">
+        <div class="career-glass-card">
+          <div class="card-badge" id="vacancyStatus"><i class="fa-solid fa-triangle-exclamation"></i> Fully Staffed</div>
+          <h3>Current Vacancy Status</h3>
+          <p class="vacancy-notice" id="vacancyNotice">"No vacancies available at the moment. Please keep an eye on our page for future opportunities."</p>
+          
+          <div class="career-divider"></div>
+          
+          <!-- Career Interest Form -->
+          <div class="career-form-area">
+            <h4>Want to join us later?</h4>
+            <p>Submit your email to get premium early notifications whenever a video editing slot opens up.</p>
+            
+            <form id="careerWaitlistForm" class="waitlist-form">
+              <div class="waitlist-input-group">
+                <input type="email" id="waitlistEmail" placeholder="Enter your email address" required aria-label="Waitlist Email Address">
+                <button type="submit" class="btn-waitlist">Subscribe</button>
+              </div>
+              <div id="waitlistMessage" class="waitlist-alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-subtitle">LET'S COLLABORATE</span>
+        <h2 class="section-title">GET IN TOUCH TODAY</h2>
+        <p class="section-desc">"For any inquiries or project discussions, feel free to contact us via email or WhatsApp."</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Information Block -->
+        <div class="contact-info-panel">
+          <div class="glass-card-contact">
+            <h3>Direct Channels</h3>
+            <p>Connect with our creative producer directly via WhatsApp or email for instant support.</p>
+            
+            <div class="channel-list">
+              <!-- WhatsApp Channel -->
+              <a href="https://wa.me/8801615626885" target="_blank" class="channel-card whatsapp-channel" id="contactWhatsAppLink">
+                <div class="channel-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="channel-info">
+                  <span class="channel-lbl">WhatsApp Support</span>
+                  <span class="channel-val" id="contactWhatsAppValue">+880 1615-626885</span>
+                </div>
+                <span class="action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+
+              <!-- Email Channel - email address hidden, only shows as clickable button -->
+              <a href="mailto:arrizvy@gmail.com" class="channel-card email-channel" id="contactEmailLink">
+                <div class="channel-icon"><i class="fa-regular fa-envelope"></i></div>
+                <div class="channel-info">
+                  <span class="channel-lbl">Official Email</span>
+                  <span class="channel-val">Click to Send Email</span>
+                </div>
+                <span class="action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </div>
+            
+            <div class="location-stamp">
+              <i class="fa-solid fa-earth-americas"></i>
+              <span>Serving Global Creators, Businesses, and Agencies Online 24/7.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Message Form -->
+        <div class="contact-form-panel">
+          <form id="contactForm" class="contact-inputs-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Your Email</label>
+                <input type="email" id="contactEmail" placeholder="john@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactService">Interested Project Category</label>
+              <div class="select-wrapper">
+                <select id="contactService" class="custom-select">
+                  <option value="Professional Video Edit & YouTube Video Editing" selected>🎬 Professional Video Edit, YouTube Video Editing</option>
+                  <option value="YouTube Shorts, Instagram Reels, TikTok">📱 YouTube Shorts, Instagram Reels, TikTok</option>
+                  <option value="Color Grading">🎨 Color Grading Service</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage">Project Details &amp; Message</label>
+              <textarea id="contactMessage" rows="5" placeholder="Tell us about your raw footage length, visual style preference, and delivery goals..." required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-submit" id="submitFormBtn">Send Message via Email</button>
+              <button type="button" class="btn-whatsapp-direct" id="submitWhatsappDirectBtn">
+                <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+              </button>
+            </div>
+            
+            <div id="contactFormStatus" class="form-status-alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="brand-holder">
+          <span class="footer-logo-text"><span class="logo-vid">VID</span><span class="logo-studio">STUDIO</span></span>
+        </div>
+        <p>Turning cinematic ideas into premium high-impact stories.</p>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#career">Career</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2026 VidStudio. All Rights Reserved. Protected Video Streaming SPA. <a href="admin.html" style="opacity:0.3; transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.3" aria-label="Admin Login"><i class="fa-solid fa-lock" style="margin-left:8px; font-size:0.8rem;"></i></a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- YouTube IFrame API Script Loader -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+  <!-- Custom Core Controller script -->
+  <script src="app.js"></script>
+</body>
+</html>

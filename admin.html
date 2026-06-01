@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidStudio | Content Admin Panel</title>
+  
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-deep: #030303;
+      --bg-dark: #0a0a0f;
+      --bg-card: rgba(15, 15, 23, 0.8);
+      --accent-green: #4ade80;
+      --accent-indigo: #6366f1;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-border-focus: rgba(99, 102, 241, 0.5);
+      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Background Neon Gradients */
+    .bg-glow-1 {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 40%;
+      height: 40%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 40%;
+      height: 40%;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Login Panel */
+    .login-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      transition: var(--transition-smooth);
+    }
+    .login-container.hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    .login-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
+    }
+    .login-card h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .login-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .input-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+    .input-control:focus {
+      outline: none;
+      border-color: var(--glass-border-focus);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    }
+    .btn-login {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent-indigo) 0%, #4f46e5 100%);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+    .login-error {
+      color: #f87171;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    /* Admin Panel Structure */
+    .admin-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      width: 100%;
+      z-index: 10;
+      position: relative;
+    }
+    header.admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 1.5rem;
+    }
+    .logo-container h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+    }
+    .logo-vid {
+      color: var(--accent-green);
+    }
+    .logo-studio {
+      color: #fff;
+    }
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    .btn-logout {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition-smooth);
+    }
+    .btn-logout:hover {
+      background: rgba(248, 113, 113, 0.1);
+      border-color: rgba(248, 113, 113, 0.3);
+      color: #f87171;
+    }
+
+    /* Tabs Layout */
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .tab-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 1.25rem;
+      backdrop-filter: blur(10px);
+    }
+    .tab-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-align: left;
+      border: none;
+      background: none;
+      margin-bottom: 0.5rem;
+    }
+    .tab-btn:last-child {
+      margin-bottom: 0;
+    }
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+    }
+    .tab-btn.active {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #fff;
+    }
+    .tab-btn i {
+      font-size: 1.1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    /* Content Cards */
+    .tab-content-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .panel-section {
+      display: none;
+    }
+    .panel-section.active {
+      display: block;
+    }
+    .panel-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .panel-section p.section-intro {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 1rem;
+    }
+
+    /* Form Fields */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    textarea.input-control {
+      resize: vertical;
+    }
+
+    /* Projects Grid Editor */
+    .projects-editor-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .project-edit-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .project-edit-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .project-edit-card h3 span.proj-num {
+      background: rgba(255,255,255,0.05);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 50px;
+      color: var(--text-secondary);
+    }
+
+    /* Save & Publish Control Panel */
+    .action-bar {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--glass-border);
+      padding-top: 2rem;
+    }
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .status-indicator i {
+      color: #3b82f6;
+    }
+    .status-indicator.success i {
+      color: var(--accent-green);
+    }
+    .status-indicator.error i {
+      color: #ef4444;
+    }
+    .btn-save-group {
+      display: flex;
+      gap: 1rem;
+    }
+    .btn-save {
+      background: linear-gradient(135deg, var(--accent-green) 0%, #16a34a 100%);
+      color: #052e16;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(74, 222, 128, 0.2);
+    }
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
+    }
+    .btn-export {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+    .btn-export:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* Modal for Code Export */
+    .export-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2500;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+    .export-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      width: 90%;
+      max-width: 650px;
+      backdrop-filter: blur(20px);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .modal-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+    .modal-close:hover {
+      color: #fff;
+    }
+    .code-block-container {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1.5rem;
+    }
+    .code-block-container pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: #a5f3fc;
+      white-space: pre-wrap;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+      }
+      .projects-editor-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Secure Login View -->
+  <div class="login-container" id="loginContainer">
+    <div class="login-card">
+      <h2>VidStudio Admin</h2>
+      <p>Log in to update your website content</p>
+      
+      <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+        <div class="form-group">
+          <label for="password">Security Password</label>
+          <input type="password" id="password" class="input-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-login">Unlock Dashboard</button>
+        <div class="login-error" id="loginError">Incorrect security password. Please try again.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Content Administrative Dashboard -->
+  <div class="admin-wrapper">
+    <header class="admin-header">
+      <div class="logo-container">
+        <h1><span class="logo-vid">VID</span><span class="logo-studio">STUDIO</span> <span style="font-size: 0.95rem; font-weight:600; font-family:'Outfit'; vertical-align: middle; margin-left: 10px; opacity:0.6;">ADMIN</span></h1>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" target="_blank" class="btn-logout" style="background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.2); color: #818cf8;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Site</a>
+        <button class="btn-logout" onclick="handleLogout();"><i class="fa-solid fa-power-off"></i> Lock</button>
+      </div>
+    </header>
+
+    <div class="dashboard-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="tab-sidebar">
+        <button class="tab-btn active" onclick="switchTab('heroSec', this);"><i class="fa-solid fa-wand-magic-sparkles"></i> Hero Section</button>
+        <button class="tab-btn" onclick="switchTab('channelsSec', this);"><i class="fa-solid fa-headset"></i> Direct Channels</button>
+        <button class="tab-btn" onclick="switchTab('projectsSec', this);"><i class="fa-solid fa-video"></i> Portfolio Videos</button>
+        <button class="tab-btn" onclick="switchTab('aboutSec', this);"><i class="fa-solid fa-users"></i> About &amp; Careers</button>
+      </aside>
+
+      <!-- Central Editor Forms -->
+      <main class="tab-content-panel">
+        
+        <!-- Tab 1: Hero Section Content -->
+        <section class="panel-section active" id="heroSec">
+          <h2>Hero Banner Content</h2>
+          <p class="section-intro">Update main title badge, headline, and body description overlay.</p>
+          
+          <div class="form-group">
+            <label for="inpBadge">Badge Text</label>
+            <input type="text" id="inpBadge" class="input-control">
+          </div>
+          
+          <div class="form-group">
+            <label for="inpTitle">Main Title Headline (HTML Allowed)</label>
+            <textarea id="inpTitle" class="input-control" rows="3"></textarea>
+            <span style="font-size:0.75rem; color: var(--text-secondary); margin-top:4px; display:block;">Wrap high-impact words in &lt;span class="gradient-text"&gt;word&lt;/span&gt; for the glowing green/blue color effect. Use &lt;br&gt; for line breaks.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="inpSubtitle">Description Subtitle</label>
+            <textarea id="inpSubtitle" class="input-control" rows="4"></textarea>
+          </div>
+        </section>
+
+        <!-- Tab 2: Direct Channels -->
+        <section class="panel-section" id="channelsSec">
+          <h2>Direct Contact Channels</h2>
+          <p class="section-intro">Modify lead generation targets, email recipients, and WhatsApp routes.</p>
+          
+          <div class="form-group">
+            <label for="inpEmail">Official Email Recipient</label>
+            <input type="email" id="inpEmail" class="input-control">
+          </div>
+
+          <div class="field-row">
+            <div class="form-group">
+              <label for="inpWhatsApp">WhatsApp Number (Digits Only)</label>
+              <input type="text" id="inpWhatsApp" class="input-control" placeholder="e.g. 8801615626885">
+              <span style="font-size:0.75rem; color: var(--text-secondary); margin-top:4px; display:block;">No spaces, plus signs, or symbols. Country code first.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="inpWhatsAppFormatted">WhatsApp Display Label</label>
+              <input type="text" id="inpWhatsAppFormatted" class="input-control" placeholder="e.g. +880 1615-626885">
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: Projects Grid Editor -->
+        <section class="panel-section" id="projectsSec">
+          <h2>Portfolio Video Showcase</h2>
+          <p class="section-intro">Edit title details, categories, thumbnails, and YouTube stream IDs for all 6 projects.</p>
+          
+          <div class="projects-editor-list" id="projectsListContainer">
+            <!-- Dynamically populated project sub-editors -->
+          </div>
+        </section>
+
+        <!-- Tab 4: About & Careers -->
+        <section class="panel-section" id="aboutSec">
+          <h2>About Us &amp; Careers</h2>
+          <p class="section-intro">Modify company copy decks, team bios, and waiting list details.</p>
+          
+          <div class="form-group">
+            <label for="inpAboutTitle">About Section Title</label>
+            <input type="text" id="inpAboutTitle" class="input-control">
+          </div>
+
+          <div class="form-group">
+            <label for="inpAbout1">Paragraph 1 (Highlights &amp; Focus)</label>
+            <textarea id="inpAbout1" class="input-control" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="inpAbout2">Paragraph 2 (Services Specialties)</label>
+            <textarea id="inpAbout2" class="input-control" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="inpAbout3">Paragraph 3 (Global Scope)</label>
+            <textarea id="inpAbout3" class="input-control" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="inpAboutSignature">About Bottom Signature Line</label>
+            <input type="text" id="inpAboutSignature" class="input-control">
+          </div>
+
+          <div class="field-row" style="margin-top:2rem; border-top: 1px solid var(--glass-border); padding-top:2rem;">
+            <div class="form-group">
+              <label for="inpVacancyStatus">Career Vacancy Status</label>
+              <input type="text" id="inpVacancyStatus" class="input-control" placeholder="e.g. Fully Staffed or Hiring">
+            </div>
+
+            <div class="form-group">
+              <label for="inpVacancyNotice">Career Vacancy Notice Text</label>
+              <input type="text" id="inpVacancyNotice" class="input-control">
+            </div>
+          </div>
+        </section>
+
+        <!-- Bottom Publish Controls -->
+        <div class="action-bar">
+          <div class="status-indicator" id="statusIndicator">
+            <i class="fa-solid fa-circle-check"></i> <span>All data loaded from configuration</span>
+          </div>
+          <div class="btn-save-group">
+            <button class="btn-export" onclick="exportConfig();"><i class="fa-solid fa-file-code"></i> Export JSON</button>
+            <button class="btn-save" onclick="saveConfiguration();"><i class="fa-solid fa-floppy-disk"></i> Save Content</button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- JSON Export Modal -->
+  <div class="export-modal" id="exportModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Export config.json Configuration</h3>
+        <button class="modal-close" onclick="closeExportModal();"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:1rem;">To permanently save your dashboard config statically, copy this JSON text block and replace the contents inside `config.json` inside your project folders.</p>
+      
+      <div class="code-block-container">
+        <pre><code id="jsonCodeOutput"></code></pre>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="btn-export" onclick="copyJsonText();" id="btnCopyCode"><i class="fa-solid fa-copy"></i> Copy Code</button>
+        <button class="btn-logout" onclick="closeExportModal();">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Script Logic -->
+  <script>
+    // Security check
+    if (localStorage.getItem("vidstudio_admin_session") === "active") {
+      document.getElementById("loginContainer").classList.add("hidden");
+    }
+
+    let currentConfig = {};
+
+    function handleLogin() {
+      const pass = document.getElementById("password").value;
+      if (pass === "admin123") {
+        localStorage.setItem("vidstudio_admin_session", "active");
+        document.getElementById("loginContainer").classList.add("hidden");
+        document.getElementById("loginError").style.display = "none";
+      } else {
+        document.getElementById("loginError").style.display = "block";
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem("vidstudio_admin_session");
+      document.getElementById("password").value = "";
+      document.getElementById("loginContainer").classList.remove("hidden");
+    }
+
+    function switchTab(targetId, btnElement) {
+      document.querySelectorAll(".panel-section").forEach(sec => sec.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      
+      document.getElementById(targetId).classList.add("active");
+      btnElement.classList.add("active");
+    }
+
+    // Load configuration values from API or localStorage
+    async function loadConfig() {
+      try {
+        const response = await fetch('/api/config');
+        if (response.ok) {
+          currentConfig = await response.json();
+        } else {
+          throw new Error("Local API not running");
+        }
+      } catch (e) {
+        // LocalStorage fallback
+        const local = localStorage.getItem("vidstudio_config");
+        if (local) {
+          currentConfig = JSON.parse(local);
+        } else {
+          // Hardcoded original baseline defaults
+          currentConfig = {
+            hero: {
+              badge: "PREMIUM POST-PRODUCTION STUDIO",
+              title: "Bring your footage<br>to life,<br><span class=\"gradient-text\">cinematically.</span>",
+              subtitle: "High-end video editing and precision color grading designed to elevate your content. From raw footage to a polished masterpiece, VidStudio delivers seamless cuts, vibrant colors, and expert pacing for brands, creators, and filmmakers worldwide."
+            },
+            contacts: {
+              whatsapp: "8801615626885",
+              whatsappFormatted: "+880 1615-626885",
+              email: "arrizvy@gmail.com"
+            },
+            about: {
+              title: "MEET THE VIDSTUDIO TEAM",
+              copy1: "We are a creative video editing team passionate about turning ideas into powerful visual stories. From cinematic commercials to social media content, we help brands, businesses, creators, and influencers bring their vision to life through high-quality editing and storytelling.",
+              copy2: "Our services include YouTube video editing, promotional videos, corporate content, car cinematic videos, fitness videos, reels, shorts, documentaries, travel videos, and social media advertisements. We focus on clean editing, smooth transitions, professional color grading, sound design, and engaging visuals that capture attention.",
+              copy3: "Whether you need content for business growth, personal branding, or entertainment, we deliver creative, fast, and reliable video solutions tailored to your goals.",
+              signature: "Your story deserves more than just editing — it deserves impact."
+            },
+            career: {
+              vacancyStatus: "Fully Staffed",
+              vacancyNotice: "No vacancies available at the moment. Please keep an eye on our page for future opportunities."
+            },
+            projects: [
+              {
+                id: "project-1",
+                category: "cinematic",
+                youtubeId: "9d8wWcJLnFI",
+                thumbnail: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Cinematic & Creative",
+                title: "Nomads of the Highlands",
+                description: "Vibrant travel documentary featuring intensive custom color-grading, cinematic overlays, and immersive soundscapes."
+              },
+              {
+                id: "project-2",
+                category: "automotive",
+                youtubeId: "ScMzIvxBSi4",
+                thumbnail: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Automotive / Car Content",
+                title: "Tokyo Drift: Midnight Symphony",
+                description: "Rhythmic, fast-paced cinematic drift showcase with high-speed transitions, frame cuts, and custom combustion engine sound design."
+              },
+              {
+                id: "project-3",
+                category: "social",
+                youtubeId: "F2478V3WkZc",
+                thumbnail: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Social & Ads",
+                title: "Apex Wearables Commercial",
+                description: "Modern tech brand promotional video with customized sleek typographic slides, motion callouts, and clean studio layouts."
+              },
+              {
+                id: "project-4",
+                category: "cinematic",
+                youtubeId: "qE_8L3yq1qU",
+                thumbnail: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Fitness & Creative",
+                title: "Beyond Limits Gym Cinematic",
+                description: "High-energy workout trailer emphasizing rapid sync-beat transition cuts, sub-bass enhancement, and powerful high-contrast color grading."
+              },
+              {
+                id: "project-5",
+                category: "automotive",
+                youtubeId: "cI67wY6o27U",
+                thumbnail: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Automotive / Car Content",
+                title: "Supercar Cinematic: Hyperion V12",
+                description: "Immersive, commercial-grade showroom and track cinematic showcasing a premium finish, neon lens flares, and bespoke camera tracks."
+              },
+              {
+                id: "project-6",
+                category: "social",
+                youtubeId: "L_LUpn-6y0E",
+                thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+                categoryLabel: "Social & Ads",
+                title: "Masterclass Creator Series",
+                description: "Educational intro course utilizing zoom-in cuts, graphic illustrations, dynamic popups, and light acoustic background soundtracks."
+              }
+            ]
+          };
+        }
+      }
+
+      populateInputs();
+    }
+
+    function populateInputs() {
+      // General & Hero
+      document.getElementById("inpBadge").value = currentConfig.hero.badge || "";
+      document.getElementById("inpTitle").value = currentConfig.hero.title || "";
+      document.getElementById("inpSubtitle").value = currentConfig.hero.subtitle || "";
+
+      // Contact channels
+      document.getElementById("inpEmail").value = currentConfig.contacts.email || "";
+      document.getElementById("inpWhatsApp").value = currentConfig.contacts.whatsapp || "";
+      document.getElementById("inpWhatsAppFormatted").value = currentConfig.contacts.whatsappFormatted || "";
+
+      // About & Careers
+      document.getElementById("inpAboutTitle").value = currentConfig.about.title || "";
+      document.getElementById("inpAbout1").value = currentConfig.about.copy1 || "";
+      document.getElementById("inpAbout2").value = currentConfig.about.copy2 || "";
+      document.getElementById("inpAbout3").value = currentConfig.about.copy3 || "";
+      document.getElementById("inpAboutSignature").value = currentConfig.about.signature || "";
+      document.getElementById("inpVacancyStatus").value = currentConfig.career.vacancyStatus || "";
+      document.getElementById("inpVacancyNotice").value = currentConfig.career.vacancyNotice || "";
+
+      // Portfolio Grid editor
+      const container = document.getElementById("projectsListContainer");
+      container.innerHTML = "";
+      currentConfig.projects.forEach((proj, index) => {
+        const card = document.createElement("div");
+        card.className = "project-edit-card";
+        card.innerHTML = `
+          <h3>Video Project Block <span class="proj-num">Position: ${index + 1}</span></h3>
+          
+          <input type="hidden" class="proj-id" value="${proj.id}">
+          
+          <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" class="input-control proj-title" value="${proj.title}">
+          </div>
+
+          <div class="field-row">
+            <div class="form-group">
+              <label>YouTube Video ID</label>
+              <input type="text" class="input-control proj-ytid" value="${proj.youtubeId}">
+            </div>
+            
+            <div class="form-group">
+              <label>Category Filter key</label>
+              <select class="input-control proj-cat" style="background:#151522; color:#fff;">
+                <option value="cinematic" ${proj.category === 'cinematic' ? 'selected' : ''}>Cinematic & Creative</option>
+                <option value="automotive" ${proj.category === 'automotive' ? 'selected' : ''}>Automotive</option>
+                <option value="social" ${proj.category === 'social' ? 'selected' : ''}>Social & Ads</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Category Label (Visible Title)</label>
+            <input type="text" class="input-control proj-catlabel" value="${proj.categoryLabel || ''}">
+          </div>
+
+          <div class="form-group">
+            <label>Thumbnail Image URL</label>
+            <input type="text" class="input-control proj-thumb" value="${proj.thumbnail}">
+          </div>
+
+          <div class="form-group">
+            <label>Short Description</label>
+            <textarea class="input-control proj-desc" rows="3">${proj.description}</textarea>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Pull modifications from form inputs and compile updated JSON
+    function compileConfig() {
+      // Basic values
+      currentConfig.hero.badge = document.getElementById("inpBadge").value.trim();
+      currentConfig.hero.title = document.getElementById("inpTitle").value.trim();
+      currentConfig.hero.subtitle = document.getElementById("inpSubtitle").value.trim();
+
+      currentConfig.contacts.email = document.getElementById("inpEmail").value.trim();
+      currentConfig.contacts.whatsapp = document.getElementById("inpWhatsApp").value.trim();
+      currentConfig.contacts.whatsappFormatted = document.getElementById("inpWhatsAppFormatted").value.trim();
+
+      currentConfig.about.title = document.getElementById("inpAboutTitle").value.trim();
+      currentConfig.about.copy1 = document.getElementById("inpAbout1").value.trim();
+      currentConfig.about.copy2 = document.getElementById("inpAbout2").value.trim();
+      currentConfig.about.copy3 = document.getElementById("inpAbout3").value.trim();
+      currentConfig.about.signature = document.getElementById("inpAboutSignature").value.trim();
+
+      currentConfig.career.vacancyStatus = document.getElementById("inpVacancyStatus").value.trim();
+      currentConfig.career.vacancyNotice = document.getElementById("inpVacancyNotice").value.trim();
+
+      // Project compilation
+      const compiledProjects = [];
+      const cards = document.querySelectorAll(".project-edit-card");
+      cards.forEach(card => {
+        const id = card.querySelector(".proj-id").value;
+        const title = card.querySelector(".proj-title").value.trim();
+        const youtubeId = card.querySelector(".proj-ytid").value.trim();
+        const category = card.querySelector(".proj-cat").value;
+        const categoryLabel = card.querySelector(".proj-catlabel").value.trim();
+        const thumbnail = card.querySelector(".proj-thumb").value.trim();
+        const description = card.querySelector(".proj-desc").value.trim();
+        
+        compiledProjects.push({
+          id,
+          category,
+          youtubeId,
+          thumbnail,
+          categoryLabel,
+          title,
+          description
+        });
+      });
+
+      currentConfig.projects = compiledProjects;
+      return currentConfig;
+    }
+
+    // Save and Publish back to Python backend dev server and localStorage
+    async function saveConfiguration() {
+      const compiled = compileConfig();
+      const statusInd = document.getElementById("statusIndicator");
+      
+      statusInd.innerHTML = `<i class="fa-solid fa-spinner fa-spin" style="color:#6366f1;"></i> <span>Saving configuration to files...</span>`;
+      statusInd.className = "status-indicator";
+
+      try {
+        const response = await fetch('/api/save-config', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(compiled)
+        });
+
+        if (response.ok) {
+          // Sync localStorage too for absolute local security fallback
+          localStorage.setItem("vidstudio_config", JSON.stringify(compiled));
+          
+          statusInd.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>Configuration saved successfully to config.json!</span>`;
+          statusInd.className = "status-indicator success";
+        } else {
+          throw new Error("HTTP Write Error");
+        }
+      } catch (e) {
+        // Fallback save locally
+        localStorage.setItem("vidstudio_config", JSON.stringify(compiled));
+        
+        statusInd.innerHTML = `<i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i> <span>Saved locally to browser storage only (dev server not active).</span>`;
+        statusInd.className = "status-indicator warning";
+      }
+
+      setTimeout(() => {
+        statusInd.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>All data loaded from configuration</span>`;
+        statusInd.className = "status-indicator";
+      }, 5000);
+    }
+
+    function exportConfig() {
+      const compiled = compileConfig();
+      document.getElementById("jsonCodeOutput").innerText = JSON.stringify(compiled, null, 2);
+      document.getElementById("exportModal").classList.add("open");
+    }
+
+    function closeExportModal() {
+      document.getElementById("exportModal").classList.remove("open");
+      document.getElementById("btnCopyCode").innerHTML = `<i class="fa-solid fa-copy"></i> Copy Code`;
+    }
+
+    function copyJsonText() {
+      const codeText = document.getElementById("jsonCodeOutput").innerText;
+      navigator.clipboard.writeText(codeText).then(() => {
+        document.getElementById("btnCopyCode").innerHTML = `<i class="fa-solid fa-check"></i> Copied!`;
+      });
+    }
+
+    // Trigger Initial configuration load
+    loadConfig();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "badge": "PREMIUM POST-PRODUCTION STUDIO",
+    "title": "Bring your footage<br>to life,<br><span class=\"gradient-text\">cinematically.</span>",
+    "subtitle": "High-end video editing and precision color grading designed to elevate your content. From raw footage to a polished masterpiece, VidStudio delivers seamless cuts, vibrant colors, and expert pacing for brands, creators, and filmmakers worldwide."
+  },
+  "contacts": {
+    "whatsapp": "8801615626885",
+    "whatsappFormatted": "+880 1615-626885",
+    "email": "arrizvy@gmail.com"
+  },
+  "about": {
+    "title": "MEET THE VIDSTUDIO TEAM",
+    "copy1": "We are a creative video editing team passionate about turning ideas into powerful visual stories. From cinematic commercials to social media content, we help brands, businesses, creators, and influencers bring their vision to life through high-quality editing and storytelling.",
+    "copy2": "Our services include YouTube video editing, promotional videos, corporate content, car cinematic videos, fitness videos, reels, shorts, documentaries, travel videos, and social media advertisements. We focus on clean editing, smooth transitions, professional color grading, sound design, and engaging visuals that capture attention.",
+    "copy3": "Whether you need content for business growth, personal branding, or entertainment, we deliver creative, fast, and reliable video solutions tailored to your goals.",
+    "signature": "Your story deserves more than just editing — it deserves impact."
+  },
+  "career": {
+    "vacancyStatus": "Fully Staffed",
+    "vacancyNotice": "No vacancies available at the moment. Please keep an eye on our page for future opportunities."
+  },
+  "projects": [
+    {
+      "id": "project-1",
+      "category": "cinematic",
+      "youtubeId": "9d8wWcJLnFI",
+      "thumbnail": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Cinematic & Creative",
+      "title": "Nomads of the Highlands",
+      "description": "Vibrant travel documentary featuring intensive custom color-grading, cinematic overlays, and immersive soundscapes."
+    },
+    {
+      "id": "project-2",
+      "category": "automotive",
+      "youtubeId": "ScMzIvxBSi4",
+      "thumbnail": "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Automotive / Car Content",
+      "title": "Tokyo Drift: Midnight Symphony",
+      "description": "Rhythmic, fast-paced cinematic drift showcase with high-speed transitions, frame cuts, and custom combustion engine sound design."
+    },
+    {
+      "id": "project-3",
+      "category": "social",
+      "youtubeId": "F2478V3WkZc",
+      "thumbnail": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Social & Ads",
+      "title": "Apex Wearables Commercial",
+      "description": "Modern tech brand promotional video with customized sleek typographic slides, motion callouts, and clean studio layouts."
+    },
+    {
+      "id": "project-4",
+      "category": "cinematic",
+      "youtubeId": "qE_8L3yq1qU",
+      "thumbnail": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Fitness & Creative",
+      "title": "Beyond Limits Gym Cinematic",
+      "description": "High-energy workout trailer emphasizing rapid sync-beat transition cuts, sub-bass enhancement, and powerful high-contrast color grading."
+    },
+    {
+      "id": "project-5",
+      "category": "automotive",
+      "youtubeId": "cI67wY6o27U",
+      "thumbnail": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Automotive / Car Content",
+      "title": "Supercar Cinematic: Hyperion V12",
+      "description": "Immersive, commercial-grade showroom and track cinematic showcasing a premium finish, neon lens flares, and bespoke camera tracks."
+    },
+    {
+      "id": "project-6",
+      "category": "social",
+      "youtubeId": "L_LUpn-6y0E",
+      "thumbnail": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
+      "categoryLabel": "Social & Ads",
+      "title": "Masterclass Creator Series",
+      "description": "Educational intro course utilizing zoom-in cuts, graphic illustrations, dynamic popups, and light acoustic background soundtracks."
+    }
+  ]
+}
