@@ -2260,9 +2260,14 @@ button, input, select, textarea {
   box-shadow: var(--accent-glow);
 }
 
+.service-card-horizontal .card-info {
+  padding-right: 6.5rem;
+}
+
 .service-card-horizontal .active-badge {
   position: absolute;
-  top: -10px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
   right: 1.5rem;
   font-size: 0.65rem;
   font-weight: 800;
@@ -2273,14 +2278,13 @@ button, input, select, textarea {
   background: var(--accent-indigo);
   color: #fff;
   opacity: 0;
-  transform: scale(0.9);
   transition: all 0.3s ease;
   z-index: 10;
 }
 
 .service-card-horizontal.active .active-badge {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(-50%) scale(1);
 }
 
 /* Pricing 3-Tier Grid */
@@ -2650,6 +2654,24 @@ button, input, select, textarea {
   
   .radio-card-group {
     grid-template-columns: 1fr;
+  }
+
+  .service-card-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  .service-card-horizontal .card-info {
+    padding-right: 0;
+  }
+  .service-card-horizontal .active-badge {
+    position: static;
+    transform: scale(0.9);
+    margin-top: 0.5rem;
+  }
+  .service-card-horizontal.active .active-badge {
+    transform: scale(1);
   }
 }
 
