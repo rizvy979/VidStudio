@@ -2205,7 +2205,7 @@ button, input, select, textarea {
   cursor: pointer;
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .service-card-horizontal::before {
@@ -2262,8 +2262,8 @@ button, input, select, textarea {
 
 .service-card-horizontal .active-badge {
   position: absolute;
-  top: 1rem;
-  right: 1.25rem;
+  top: -10px;
+  right: 1.5rem;
   font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -2275,6 +2275,7 @@ button, input, select, textarea {
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
 .service-card-horizontal.active .active-badge {
