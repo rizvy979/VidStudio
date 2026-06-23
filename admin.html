@@ -227,7 +227,7 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.85rem 1rem;
+      padding: 0.85rem 1rem 0.85rem 0.75rem;
       border-radius: 12px;
       color: var(--text-secondary);
       font-size: 0.95rem;
@@ -235,7 +235,8 @@
       cursor: pointer;
       transition: var(--transition-smooth);
       text-align: left;
-      border: none;
+      border: 1px solid transparent;
+      border-left: 4px solid transparent;
       background: none;
       margin-bottom: 0.5rem;
     }
@@ -244,11 +245,13 @@
     }
     .tab-btn:hover {
       background: rgba(255, 255, 255, 0.03);
+      border-left-color: rgba(99, 102, 241, 0.3);
       color: #fff;
     }
     .tab-btn.active {
-      background: rgba(99, 102, 241, 0.1);
+      background: rgba(99, 102, 241, 0.12);
       border: 1px solid rgba(99, 102, 241, 0.2);
+      border-left: 4px solid var(--accent-indigo);
       color: #fff;
     }
     .tab-btn i {
