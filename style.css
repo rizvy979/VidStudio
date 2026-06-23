@@ -2686,17 +2686,17 @@ button, input, select, textarea {
    12. PREMIUM PAYMENT MODAL & INTERACTIVE CREDIT CARD
    ========================================================================== */
 .payment-modal-box {
-  width: 10cm !important;
-  max-width: 10cm !important;
-  height: 15cm !important;
-  max-height: 15cm !important;
+  width: 12cm !important;
+  max-width: 12cm !important;
+  height: 19cm !important;
+  max-height: 19cm !important;
   background: rgba(8, 8, 14, 0.95) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   backdrop-filter: blur(25px) !important;
   display: flex !important;
   flex-direction: column !important;
   overflow: hidden !important;
-  border-radius: 20px !important;
+  border-radius: 28px !important;
 }
 
 .payment-modal-box .modal-header {
@@ -2712,11 +2712,11 @@ button, input, select, textarea {
 .payment-modal-body {
   flex: 1 !important;
   overflow-y: auto !important;
-  padding: 1rem 1.25rem 1.25rem !important;
+  padding: 1.25rem 1.5rem 1.5rem !important;
   margin-top: 0 !important;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
   /* Premium thin scrollbar */
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.1) transparent;
@@ -2791,7 +2791,7 @@ button, input, select, textarea {
 /* Virtual Credit Card Container */
 .virtual-card-container {
   width: 100%;
-  height: 160px;
+  height: 200px;
   perspective: 1000px;
   margin-bottom: 0.5rem;
   flex-shrink: 0;
@@ -2817,12 +2817,12 @@ button, input, select, textarea {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 16px;
-  padding: 1rem 1.25rem !important;
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem !important;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
@@ -2860,8 +2860,8 @@ button, input, select, textarea {
 }
 
 .card-chip {
-  width: 38px;
-  height: 26px;
+  width: 44px;
+  height: 32px;
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   border-radius: 6px;
   position: relative;
@@ -2879,19 +2879,19 @@ button, input, select, textarea {
 }
 
 .card-brand {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #fff;
   transition: all 0.3s ease;
 }
 
 .card-number-display {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   letter-spacing: 0.12em;
   color: #fff;
   text-align: center;
   word-spacing: 0.15em;
-  margin: 0.75rem 0;
+  margin: 1.25rem 0;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -2902,16 +2902,16 @@ button, input, select, textarea {
 }
 
 .card-label {
-  font-size: 0.55rem;
+  font-size: 0.6rem;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   display: block;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.25rem;
 }
 
 .card-value {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: #fff;
   text-transform: uppercase;
@@ -2920,13 +2920,13 @@ button, input, select, textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 160px;
+  max-width: 200px;
 }
 
 /* Card Back Details */
 .card-magnetic-strip {
   width: 100%;
-  height: 32px;
+  height: 40px;
   background: #000;
 }
 
@@ -2937,18 +2937,18 @@ button, input, select, textarea {
 
 .cvc-signature-strip {
   width: 100%;
-  height: 30px;
+  height: 36px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 4px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 0.5rem;
+  padding-right: 0.75rem;
 }
 
 .cvc-value-display {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   font-style: italic;
   color: #000;
@@ -2969,19 +2969,19 @@ button, input, select, textarea {
 .payment-inputs-form {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1.25rem;
   transition: all 0.3s ease;
 }
 
 .payment-inputs-form label {
-  font-size: 0.75rem !important;
-  margin-bottom: 0.4rem !important;
+  font-size: 0.72rem !important;
+  margin-bottom: 0.35rem !important;
 }
 
 .payment-inputs-form input {
-  padding: 0.65rem 0.85rem !important;
-  font-size: 0.88rem !important;
-  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 0.95rem !important;
+  border-radius: 12px !important;
 }
 
 .payment-inputs-form.hidden {
@@ -3031,8 +3031,8 @@ button, input, select, textarea {
 
 .btn-pay-submit {
   width: 100%;
-  padding: 0.85rem !important;
-  font-size: 0.95rem !important;
+  padding: 1.1rem !important;
+  font-size: 1.05rem !important;
   border-radius: 30px !important;
 }
 
