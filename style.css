@@ -2261,20 +2261,20 @@ button, input, select, textarea {
 }
 
 .service-card-horizontal .card-info {
-  padding-right: 6.5rem;
+  padding-right: 5rem;
 }
 
 .service-card-horizontal .active-badge {
   position: absolute;
   top: 50%;
   transform: translateY(-50%) scale(0.9);
-  right: 1.5rem;
-  font-size: 0.65rem;
+  right: 1.25rem;
+  font-size: 0.58rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.25rem 0.6rem;
-  border-radius: 50px;
+  padding: 0.15rem 0.45rem;
+  border-radius: 20px;
   background: var(--accent-indigo);
   color: #fff;
   opacity: 0;
@@ -2295,7 +2295,7 @@ button, input, select, textarea {
 .pricing-packages-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 1.25rem;
   align-items: stretch;
 }
 
@@ -2303,8 +2303,8 @@ button, input, select, textarea {
   position: relative;
   background: rgba(12, 12, 20, 0.7);
   border: 1px solid var(--glass-border);
-  border-radius: 28px;
-  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -2347,35 +2347,35 @@ button, input, select, textarea {
 }
 
 .package-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .package-header h4 {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .package-tagline {
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  min-height: 54px; /* Align text across cards */
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  min-height: 48px; /* Align text across cards */
 }
 
 .package-price-block {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
   border-bottom: 1px solid var(--glass-border);
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
 }
 
 .original-price {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   text-decoration: line-through;
   font-weight: 500;
@@ -2384,19 +2384,19 @@ button, input, select, textarea {
 .offer-price-container {
   display: flex;
   align-items: baseline;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .offer-price-container .currency {
   font-family: var(--font-heading);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 900;
   color: var(--accent-cyan);
 }
 
 .offer-price-container .price {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   font-weight: 900;
   color: #fff;
   background: var(--accent-grad);
@@ -2411,14 +2411,14 @@ button, input, select, textarea {
 }
 
 .offer-price-container .term {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .package-body {
   flex-grow: 1;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .package-deliverables {
@@ -2427,21 +2427,21 @@ button, input, select, textarea {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
 .package-deliverables li {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.9rem;
+  gap: 0.65rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.4;
 }
 
 .package-deliverables li i {
   color: var(--accent-cyan);
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 2px;
 }
 
@@ -2460,9 +2460,9 @@ button, input, select, textarea {
   background: #25d366;
   color: #fff;
   border-radius: 50px;
-  padding: 0.85rem 1.5rem;
+  padding: 0.7rem 1.25rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2483,9 +2483,9 @@ button, input, select, textarea {
   border: 1px solid var(--glass-border);
   color: #fff;
   border-radius: 50px;
-  padding: 0.85rem 1.5rem;
+  padding: 0.7rem 1.25rem;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   display: flex;
   align-items: center;
