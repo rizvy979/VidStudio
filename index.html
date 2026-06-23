@@ -427,6 +427,140 @@
     </div>
   </div>
 
+  <!-- Premium Payment Modal -->
+  <div class="secure-modal" id="paymentModal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog-container">
+      <div class="modal-box payment-modal-box">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-credit-card"></i> Secure Checkout</h3>
+          <button class="modal-close" id="paymentModalCloseBtn" aria-label="Close Payment Modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="payment-modal-body">
+          <!-- Order Summary Badge -->
+          <div class="payment-order-summary">
+            <div class="summary-details">
+              <span class="summary-service-title" id="payServiceTitle">Professional Video Edit</span>
+              <h4 class="summary-package-title" id="payPackageTitle">Standard (Growth Mode)</h4>
+            </div>
+            <div class="summary-price">
+              <span class="summary-price-value" id="payPackagePrice">$99</span>
+              <span class="summary-price-term">USD</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Virtual Credit Card Container -->
+          <div class="virtual-card-container" id="payCardContainer">
+            <div class="credit-card-inner" id="creditCard">
+              <!-- Card Front -->
+              <div class="card-face card-front">
+                <div class="card-glow-overlay"></div>
+                <div class="card-header-row">
+                  <div class="card-chip"></div>
+                  <div class="card-brand" id="cardBrandIcon"><i class="fa-brands fa-cc-visa"></i></div>
+                </div>
+                <div class="card-number-display" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                <div class="card-footer-row">
+                  <div class="card-holder-block">
+                    <span class="card-label">CARD HOLDER</span>
+                    <span class="card-value" id="cardHolderDisplay">YOUR NAME HERE</span>
+                  </div>
+                  <div class="card-expiry-block">
+                    <span class="card-label">EXPIRES</span>
+                    <span class="card-value" id="cardExpiryDisplay">MM/YY</span>
+                  </div>
+                </div>
+              </div>
+              <!-- Card Back -->
+              <div class="card-face card-back">
+                <div class="card-magnetic-strip"></div>
+                <div class="card-cvc-block">
+                  <span class="card-label">CVC</span>
+                  <div class="cvc-signature-strip">
+                    <span class="cvc-value-display" id="cardCvcDisplay">•••</span>
+                  </div>
+                </div>
+                <div class="card-back-brand"><i class="fa-solid fa-shield-halved"></i> VidStudio Secure Gateway</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkout Form -->
+          <form id="paymentForm" class="payment-inputs-form">
+            <div class="form-group">
+              <label for="payCardName">Cardholder Name</label>
+              <input type="text" id="payCardName" class="input-control" placeholder="John Doe" required autocomplete="cc-name">
+            </div>
+
+            <div class="form-group">
+              <label for="payCardNumber">Card Number</label>
+              <div class="input-icon-wrapper">
+                <input type="text" id="payCardNumber" class="input-control" placeholder="4000 1234 5678 9010" required autocomplete="cc-number" maxlength="19">
+                <i class="fa-solid fa-lock input-lock-icon"></i>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="payCardExpiry">Expiration Date</label>
+                <input type="text" id="payCardExpiry" class="input-control" placeholder="MM/YY" required autocomplete="cc-exp" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label for="payCardCvc">CVC</label>
+                <input type="text" id="payCardCvc" class="input-control" placeholder="123" required autocomplete="cc-csc" maxlength="4">
+              </div>
+            </div>
+
+            <div class="payment-security-notice">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Your payment is secured with 256-bit SSL encryption. We never store your full card details.</span>
+            </div>
+
+            <button type="submit" class="btn-submit btn-pay-submit" id="completePaymentBtn">
+              <span class="btn-text">Pay <span id="payBtnAmount">$99.00</span></span>
+              <span class="spinner-icon hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing...</span>
+            </button>
+          </form>
+
+          <!-- Success Animation Screen (Hidden initially) -->
+          <div class="payment-success-screen hidden" id="paymentSuccessScreen">
+            <div class="success-icon-ring animate-pop">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Payment Successful!</h3>
+            <p>Thank you for choosing VidStudio. Your order invoice has been generated.</p>
+            
+            <div class="receipt-box">
+              <div class="receipt-row">
+                <span>Receipt Number:</span>
+                <strong id="receiptNum">VS-827463</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Total Paid:</span>
+                <strong id="receiptAmount">$99.00 USD</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Payment Method:</span>
+                <strong id="receiptCard">Visa ending in 4242</strong>
+              </div>
+            </div>
+
+            <div class="success-actions">
+              <button class="btn-package-whatsapp" id="successWhatsappBtn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp Producer Receipt
+              </button>
+              <button class="btn-package-email" id="successCloseBtn">
+                Done &amp; Return
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ================= ABOUT US SECTION ================= -->
   <section id="about" class="section about-section">
     <div class="container">

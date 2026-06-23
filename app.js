@@ -234,7 +234,24 @@ let siteConfig = {
       title: "Masterclass Creator Series",
       description: "Educational intro course utilizing zoom-in cuts, graphic illustrations, dynamic popups, and light acoustic background soundtracks."
     }
-  ]
+  ],
+  payment_links: {
+    professional_edit: {
+      basic: "",
+      standard: "",
+      premium: ""
+    },
+    social_shorts: {
+      basic: "",
+      standard: "",
+      premium: ""
+    },
+    color_grading: {
+      basic: "",
+      standard: "",
+      premium: ""
+    }
+  }
 };
 
 async function loadAndApplyConfig() {
@@ -391,6 +408,9 @@ function updatePricingGrid() {
         </ul>
       </div>
       <div class="package-footer">
+        <button class="btn-submit btn-package-pay" onclick="checkoutPackage('${pkgKey}')" style="padding: 0.7rem 1.25rem; font-size: 0.85rem; width: 100%; border: none; margin-bottom: 0.25rem;">
+          <i class="fa-solid fa-credit-card"></i> Pay Online Now
+        </button>
         <button class="btn-package-whatsapp" onclick="sharePackage('${pkgKey}', 'whatsapp')">
           <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
         </button>
@@ -766,4 +786,207 @@ document.addEventListener("DOMContentLoaded", async () => {
       formStatus.className = "form-status-alert";
     }, 5000);
   });
+});
+
+// --- 6. Payment & Checkout Integration ---
+window.checkoutPackage = function(pkgKey) {
+  // Check if a real payment link exists in the active config
+  let link = "";
+  if (siteConfig.payment_links && siteConfig.payment_links[activeCategoryKey]) {
+    link = siteConfig.payment_links[activeCategoryKey][pkgKey];
+  }
+  
+  if (link && link.trim() !== "") {
+    // Redirect to the real Stripe/PayPal payment page
+    window.open(link.trim(), "_blank");
+  } else {
+    // Open the premium mock credit card checkout modal
+    openPaymentModal(pkgKey);
+  }
+};
+
+function openPaymentModal(pkgKey) {
+  const category = SERVICES_DATA[activeCategoryKey];
+  const pkg = category.packages[pkgKey];
+  
+  const modal = document.getElementById("paymentModal");
+  const form = document.getElementById("paymentForm");
+  const successScreen = document.getElementById("paymentSuccessScreen");
+  const creditCard = document.getElementById("creditCard");
+  
+  // Set summary info
+  document.getElementById("payServiceTitle").innerText = category.title;
+  document.getElementById("payPackageTitle").innerText = pkg.title;
+  document.getElementById("payPackagePrice").innerText = `$${pkg.offerPrice}`;
+  document.getElementById("payBtnAmount").innerText = `$${pkg.offerPrice}.00`;
+  
+  // Reset form and card displays
+  form.reset();
+  form.classList.remove("hidden");
+  successScreen.classList.remove("open");
+  successScreen.classList.add("hidden");
+  creditCard.classList.remove("flipped");
+  
+  document.getElementById("cardNumberDisplay").innerText = "•••• •••• •••• ••••";
+  document.getElementById("cardHolderDisplay").innerText = "YOUR NAME HERE";
+  document.getElementById("cardExpiryDisplay").innerText = "MM/YY";
+  document.getElementById("cardCvcDisplay").innerText = "•••";
+  document.getElementById("cardBrandIcon").innerHTML = '<i class="fa-solid fa-credit-card"></i>';
+  
+  // Open modal
+  modal.classList.add("open");
+  
+  // Set up dynamic card formatting and flip behaviors
+  setupCardSync();
+}
+
+function setupCardSync() {
+  const nameInp = document.getElementById("payCardName");
+  const numberInp = document.getElementById("payCardNumber");
+  const expiryInp = document.getElementById("payCardExpiry");
+  const cvcInp = document.getElementById("payCardCvc");
+  const creditCard = document.getElementById("creditCard");
+  
+  // 1. Holder Name Sync
+  nameInp.addEventListener("input", () => {
+    const val = nameInp.value.trim().toUpperCase();
+    document.getElementById("cardHolderDisplay").innerText = val.length > 0 ? val : "YOUR NAME HERE";
+  });
+  
+  // 2. Card Number Sync & Brand Detection
+  numberInp.addEventListener("input", (e) => {
+    let val = numberInp.value.replace(/\D/g, "");
+    
+    // Auto-spacing every 4 digits
+    let formatted = "";
+    for (let i = 0; i < val.length; i++) {
+      if (i > 0 && i % 4 === 0) formatted += " ";
+      formatted += val[i];
+    }
+    numberInp.value = formatted;
+    
+    // Update display
+    document.getElementById("cardNumberDisplay").innerText = formatted.length > 0 ? formatted : "•••• •••• •••• ••••";
+    
+    // Detect Brand
+    const brandIcon = document.getElementById("cardBrandIcon");
+    if (val.startsWith("4")) {
+      brandIcon.innerHTML = '<i class="fa-brands fa-cc-visa" style="color: #fff;"></i>';
+    } else if (val.startsWith("5")) {
+      brandIcon.innerHTML = '<i class="fa-brands fa-cc-mastercard" style="color: #ff9900;"></i>';
+    } else if (val.startsWith("3")) {
+      brandIcon.innerHTML = '<i class="fa-brands fa-cc-amex" style="color: #0170b9;"></i>';
+    } else if (val.startsWith("6")) {
+      brandIcon.innerHTML = '<i class="fa-brands fa-cc-discover" style="color: #ff6000;"></i>';
+    } else {
+      brandIcon.innerHTML = '<i class="fa-solid fa-credit-card"></i>';
+    }
+  });
+  
+  // 3. Expiry Date Sync (auto-slash)
+  expiryInp.addEventListener("input", (e) => {
+    let val = expiryInp.value.replace(/\D/g, "");
+    if (val.length > 2) {
+      expiryInp.value = val.slice(0, 2) + "/" + val.slice(2, 4);
+    } else {
+      expiryInp.value = val;
+    }
+    document.getElementById("cardExpiryDisplay").innerText = expiryInp.value.length > 0 ? expiryInp.value : "MM/YY";
+  });
+  
+  // 4. CVC Sync & Auto Card Flip
+  cvcInp.addEventListener("input", () => {
+    let val = cvcInp.value.replace(/\D/g, "");
+    cvcInp.value = val;
+    document.getElementById("cardCvcDisplay").innerText = val.length > 0 ? val : "•••";
+  });
+  
+  cvcInp.addEventListener("focus", () => {
+    creditCard.classList.add("flipped");
+  });
+  
+  cvcInp.addEventListener("blur", () => {
+    creditCard.classList.remove("flipped");
+  });
+}
+
+// Attach checkout submit handler and close handlers
+document.addEventListener("DOMContentLoaded", () => {
+  const payModal = document.getElementById("paymentModal");
+  const closeBtn = document.getElementById("paymentModalCloseBtn");
+  const modalBackdrop = payModal.querySelector(".modal-backdrop");
+  
+  const closePaymentModal = () => {
+    payModal.classList.remove("open");
+  };
+  
+  if (closeBtn) closeBtn.addEventListener("click", closePaymentModal);
+  if (modalBackdrop) modalBackdrop.addEventListener("click", closePaymentModal);
+  
+  // Handle Checkout Submit
+  const paymentForm = document.getElementById("paymentForm");
+  const successScreen = document.getElementById("paymentSuccessScreen");
+  
+  if (paymentForm) {
+    paymentForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById("completePaymentBtn");
+      const btnText = submitBtn.querySelector(".btn-text");
+      const spinner = submitBtn.querySelector(".spinner-icon");
+      
+      // Show loading
+      submitBtn.disabled = true;
+      btnText.classList.add("hidden");
+      spinner.classList.remove("hidden");
+      
+      // Simulate Processing Gateway Payment
+      setTimeout(() => {
+        // Reset loading
+        submitBtn.disabled = false;
+        btnText.classList.remove("hidden");
+        spinner.classList.add("hidden");
+        
+        // Hide Form, Show Success Screen
+        paymentForm.classList.add("hidden");
+        successScreen.classList.remove("hidden");
+        successScreen.classList.add("open");
+        
+        // Generate random receipt and details
+        const receipt = "VS-" + Math.floor(100000 + Math.random() * 900000);
+        const amount = document.getElementById("payPackagePrice").innerText;
+        const cardNum = document.getElementById("payCardNumber").value.replace(/\s+/g, "");
+        const cardEnding = cardNum.slice(-4) || "4242";
+        const brandIcon = document.getElementById("cardBrandIcon").innerHTML;
+        const brandName = brandIcon.includes("visa") ? "Visa" : brandIcon.includes("mastercard") ? "Mastercard" : brandIcon.includes("amex") ? "Amex" : "Credit Card";
+        
+        document.getElementById("receiptNum").innerText = receipt;
+        document.getElementById("receiptAmount").innerText = amount + " USD";
+        document.getElementById("receiptCard").innerText = `${brandName} ending in ${cardEnding}`;
+        
+        // Setup WhatsApp Receipt Share Link
+        const categoryTitle = document.getElementById("payServiceTitle").innerText;
+        const packageTitle = document.getElementById("payPackageTitle").innerText;
+        const waBtn = document.getElementById("successWhatsappBtn");
+        
+        let msg = `*VidStudio Payment Receipt*\n\n`;
+        msg += `• *Receipt Number:* ${receipt}\n`;
+        msg += `• *Service:* ${categoryTitle}\n`;
+        msg += `• *Package:* ${packageTitle}\n`;
+        msg += `• *Amount Paid:* ${amount} USD (Paid Online)\n`;
+        msg += `• *Card Info:* ${brandName} ending in ${cardEnding}\n\n`;
+        msg += `Hey VidStudio! I have successfully paid for the *${packageTitle}* package online. Here is my receipt code: *${receipt}*. Please begin my post-production edit!`;
+        
+        waBtn.onclick = () => {
+          window.open(`https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank");
+        };
+        
+        // Setup Success Close Button
+        document.getElementById("successCloseBtn").onclick = () => {
+          payModal.classList.remove("open");
+        };
+        
+      }, 2500);
+    });
+  }
 });

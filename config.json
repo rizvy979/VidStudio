@@ -75,5 +75,22 @@
       "title": "Masterclass Creator Series",
       "description": "Educational intro course utilizing zoom-in cuts, graphic illustrations, dynamic popups, and light acoustic background soundtracks."
     }
-  ]
+  ],
+  "payment_links": {
+    "professional_edit": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    },
+    "social_shorts": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    },
+    "color_grading": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    }
+  }
 }
