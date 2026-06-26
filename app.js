@@ -304,6 +304,36 @@ async function loadAndApplyConfig() {
   if (waVal) waVal.innerText = siteConfig.contacts.whatsappFormatted;
   if (emailLink) emailLink.href = `mailto:${siteConfig.contacts.email}`;
 
+  // Populate new CTA and sticky elements
+  const ctaWhatsApp = document.getElementById("ctaWhatsApp");
+  const ctaEmail = document.getElementById("ctaEmail");
+  const stickyWhatsApp = document.getElementById("stickyWhatsApp");
+
+  if (ctaWhatsApp) {
+    const waMsg = "Hi VidStudio, I want to discuss a video editing project. Please share your pricing and process.";
+    ctaWhatsApp.href = `https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodeURIComponent(waMsg)}`;
+  }
+  
+  if (ctaEmail) {
+    const emailSubject = "Video Editing Project Brief";
+    const emailBody = `Hi VidStudio,
+
+I want to share a video editing project brief.
+
+Project type:
+Video length:
+Deadline:
+Budget:
+Reference video:
+
+Thanks.`;
+    ctaEmail.href = `mailto:${siteConfig.contacts.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+  }
+
+  if (stickyWhatsApp) {
+    stickyWhatsApp.href = `https://wa.me/${siteConfig.contacts.whatsapp}`;
+  }
+
   // Re-render Portfolio Grid
   const portfolioGrid = document.getElementById("portfolioGrid");
   if (portfolioGrid) {
@@ -408,9 +438,11 @@ function updatePricingGrid() {
         </ul>
       </div>
       <div class="package-footer">
+        ${/*
         <button class="btn-submit btn-package-pay" onclick="checkoutPackage('${pkgKey}')" style="padding: 0.7rem 1.25rem; font-size: 0.85rem; width: 100%; border: none; margin-bottom: 0.25rem;">
           <i class="fa-solid fa-credit-card"></i> Pay Online Now
         </button>
+        */ ''}
         <button class="btn-package-whatsapp" onclick="sharePackage('${pkgKey}', 'whatsapp')">
           <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
         </button>
@@ -726,26 +758,62 @@ document.addEventListener("DOMContentLoaded", async () => {
   const formStatus = document.getElementById("contactFormStatus");
   
   // Submit via standard Email Link Client
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("contactName").value.trim();
-    const email = document.getElementById("contactEmail").value.trim();
-    const service = document.getElementById("contactService").value;
-    const text = document.getElementById("contactMessage").value.trim();
-    
-    if (name && email && text) {
-      let emailBody = `VidStudio Contact Request\n\n`;
-      emailBody += `• Client Name: ${name}\n`;
-      emailBody += `• Client Email: ${email}\n`;
-      emailBody += `• Project Type: ${service}\n\n`;
-      emailBody += `• Message:\n${text}`;
+  if (contactForm && formStatus) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const service = document.getElementById("contactService").value;
+      const text = document.getElementById("contactMessage").value.trim();
       
-      const subject = encodeURIComponent(`VidStudio Inquiry from ${name}`);
-      const body = encodeURIComponent(emailBody);
+      if (name && email && text) {
+        let emailBody = `VidStudio Contact Request\n\n`;
+        emailBody += `• Client Name: ${name}\n`;
+        emailBody += `• Client Email: ${email}\n`;
+        emailBody += `• Project Type: ${service}\n\n`;
+        emailBody += `• Message:\n${text}`;
+        
+        const subject = encodeURIComponent(`VidStudio Inquiry from ${name}`);
+        const body = encodeURIComponent(emailBody);
+        
+        window.location.href = `mailto:${siteConfig.contacts.email}?subject=${subject}&body=${body}`;
+        
+        formStatus.innerText = "Mail client opened. Thank you for your inquiry!";
+        formStatus.className = "form-status-alert success";
+        contactForm.reset();
+        
+        setTimeout(() => {
+          formStatus.innerText = "";
+          formStatus.className = "form-status-alert";
+        }, 5000);
+      }
+    });
+  }
+  
+  // Direct Quick Submit to WhatsApp
+  const waDirectBtn = document.getElementById("submitWhatsappDirectBtn");
+  if (waDirectBtn && formStatus && contactForm) {
+    waDirectBtn.addEventListener("click", () => {
+      const name = document.getElementById("contactName").value.trim();
+      const email = document.getElementById("contactEmail").value.trim();
+      const service = document.getElementById("contactService").value;
+      const text = document.getElementById("contactMessage").value.trim();
       
-      window.location.href = `mailto:${siteConfig.contacts.email}?subject=${subject}&body=${body}`;
+      if (!name || !email || !text) {
+        formStatus.innerText = "Please fill in Name, Email, and Message before sending via WhatsApp.";
+        formStatus.className = "form-status-alert error";
+        return;
+      }
       
-      formStatus.innerText = "Mail client opened. Thank you for your inquiry!";
+      let waMsg = `*VidStudio Inquiry*\n\n`;
+      waMsg += `• *Name:* ${name}\n`;
+      waMsg += `• *Email:* ${email}\n`;
+      waMsg += `• *Project Type:* ${service}\n\n`;
+      waMsg += `• *Details:*\n${text}`;
+      
+      window.open(`https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodeURIComponent(waMsg)}`, "_blank");
+      
+      formStatus.innerText = "Inquiry sent via WhatsApp!";
       formStatus.className = "form-status-alert success";
       contactForm.reset();
       
@@ -753,39 +821,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         formStatus.innerText = "";
         formStatus.className = "form-status-alert";
       }, 5000);
-    }
-  });
-  
-  // Direct Quick Submit to WhatsApp
-  document.getElementById("submitWhatsappDirectBtn").addEventListener("click", () => {
-    const name = document.getElementById("contactName").value.trim();
-    const email = document.getElementById("contactEmail").value.trim();
-    const service = document.getElementById("contactService").value;
-    const text = document.getElementById("contactMessage").value.trim();
-    
-    if (!name || !email || !text) {
-      formStatus.innerText = "Please fill in Name, Email, and Message before sending via WhatsApp.";
-      formStatus.className = "form-status-alert error";
-      return;
-    }
-    
-    let waMsg = `*VidStudio Inquiry*\n\n`;
-    waMsg += `• *Name:* ${name}\n`;
-    waMsg += `• *Email:* ${email}\n`;
-    waMsg += `• *Project Type:* ${service}\n\n`;
-    waMsg += `• *Details:*\n${text}`;
-    
-    window.open(`https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodeURIComponent(waMsg)}`, "_blank");
-    
-    formStatus.innerText = "Inquiry sent via WhatsApp!";
-    formStatus.className = "form-status-alert success";
-    contactForm.reset();
-    
-    setTimeout(() => {
-      formStatus.innerText = "";
-      formStatus.className = "form-status-alert";
-    }, 5000);
-  });
+    });
+  }
 });
 
 // --- 6. Payment & Checkout Integration ---

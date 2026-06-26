@@ -217,7 +217,6 @@
                 <h4>Professional Video Edit, YouTube Video Editing</h4>
                 <p>Cinematic cuts, high-end YouTube edits, personal branding, corporate promos, and full scale storytelling.</p>
               </div>
-              <span class="active-badge">Active</span>
             </div>
             
             <div class="service-card-horizontal" data-category="social_shorts" id="catSocial">
@@ -226,7 +225,6 @@
                 <h4>YouTube Shorts, Instagram Reels, TikTok</h4>
                 <p>High-retention social content, custom hooks, dynamic overlays, subtitles, and viral video formats.</p>
               </div>
-              <span class="active-badge">Active</span>
             </div>
 
             <div class="service-card-horizontal" data-category="color_grading" id="catColorGrading">
@@ -235,7 +233,6 @@
                 <h4>Color Grading</h4>
                 <p>Premium color correction, custom LUT design, shot matching, cinematic grading, and visual enhancement.</p>
               </div>
-              <span class="active-badge">Active</span>
             </div>
           </div>
         </div>
@@ -645,87 +642,26 @@
   <!-- ================= CONTACT SECTION ================= -->
   <section id="contact" class="section contact-section">
     <div class="container">
-      <div class="section-header text-center">
+      <div class="glass-card-contact text-center contact-cta-container">
         <span class="section-subtitle">LET'S COLLABORATE</span>
-        <h2 class="section-title">GET IN TOUCH TODAY</h2>
-        <p class="section-desc">"For any inquiries or project discussions, feel free to contact us via email or WhatsApp."</p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Contact Information Block -->
-        <div class="contact-info-panel">
-          <div class="glass-card-contact">
-            <h3>Direct Channels</h3>
-            <p>Connect with our creative producer directly via WhatsApp or email for instant support.</p>
-            
-            <div class="channel-list">
-              <!-- WhatsApp Channel -->
-              <a href="https://wa.me/8801615626885" target="_blank" class="channel-card whatsapp-channel" id="contactWhatsAppLink">
-                <div class="channel-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                <div class="channel-info">
-                  <span class="channel-lbl">WhatsApp Support</span>
-                  <span class="channel-val" id="contactWhatsAppValue">+880 1615-626885</span>
-                </div>
-                <span class="action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </a>
-
-              <!-- Email Channel - email address hidden, only shows as clickable button -->
-              <a href="mailto:arrizvy@gmail.com" class="channel-card email-channel" id="contactEmailLink">
-                <div class="channel-icon"><i class="fa-regular fa-envelope"></i></div>
-                <div class="channel-info">
-                  <span class="channel-lbl">Official Email</span>
-                  <span class="channel-val">Click to Send Email</span>
-                </div>
-                <span class="action-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-              </a>
-            </div>
-            
-            <div class="location-stamp">
-              <i class="fa-solid fa-earth-americas"></i>
-              <span>Serving Global Creators, Businesses, and Agencies Online 24/7.</span>
-            </div>
-          </div>
+        <h2 class="section-title">Ready to Edit Your Next Video?</h2>
+        <p class="section-desc">Send us your project details and get a quick quote for cinematic, social media, commercial, or long-form video editing.</p>
+        
+        <div class="cta-buttons-group">
+          <a href="#" target="_blank" class="btn-cta btn-cta-whatsapp" id="ctaWhatsApp">
+            <i class="fa-brands fa-whatsapp"></i> Get Quote on WhatsApp
+          </a>
+          <a href="#" class="btn-cta btn-cta-email" id="ctaEmail">
+            <i class="fa-regular fa-envelope"></i> Send Project Brief
+          </a>
+          <a href="#project" class="btn-cta btn-cta-portfolio">
+            View Portfolio <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
-
-        <!-- Contact Message Form -->
-        <div class="contact-form-panel">
-          <form id="contactForm" class="contact-inputs-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contactName">Your Name</label>
-                <input type="text" id="contactName" placeholder="John Doe" required>
-              </div>
-              <div class="form-group">
-                <label for="contactEmail">Your Email</label>
-                <input type="email" id="contactEmail" placeholder="john@example.com" required>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="contactService">Interested Project Category</label>
-              <div class="select-wrapper">
-                <select id="contactService" class="custom-select">
-                  <option value="Professional Video Edit & YouTube Video Editing" selected>🎬 Professional Video Edit, YouTube Video Editing</option>
-                  <option value="YouTube Shorts, Instagram Reels, TikTok">📱 YouTube Shorts, Instagram Reels, TikTok</option>
-                  <option value="Color Grading">🎨 Color Grading Service</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="contactMessage">Project Details &amp; Message</label>
-              <textarea id="contactMessage" rows="5" placeholder="Tell us about your raw footage length, visual style preference, and delivery goals..." required></textarea>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn-submit" id="submitFormBtn">Send Message via Email</button>
-              <button type="button" class="btn-whatsapp-direct" id="submitWhatsappDirectBtn">
-                <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
-              </button>
-            </div>
-            
-            <div id="contactFormStatus" class="form-status-alert"></div>
-          </form>
+        
+        <div class="location-stamp justify-center">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span>Serving Global Creators, Businesses, and Agencies Online 24/7.</span>
         </div>
       </div>
     </div>
@@ -755,6 +691,11 @@
       </div>
     </div>
   </footer>
+
+  <!-- Sticky WhatsApp Button -->
+  <a href="#" target="_blank" class="sticky-whatsapp-btn" id="stickyWhatsApp" aria-label="Contact on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
 
   <!-- YouTube IFrame API Script Loader -->
   <script src="https://www.youtube.com/iframe_api"></script>
