@@ -2092,16 +2092,16 @@ button, input, select, textarea {
 
 .service-categories-list-horizontal {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.15rem;
   margin-top: 2rem;
 }
 
 .service-card-horizontal {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1.5rem 2rem 1.5rem 1.75rem !important;
+  gap: 1.15rem;
+  padding: 1.35rem 1.4rem 1.35rem 1.25rem !important;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.03);
   border-left: 5px solid transparent !important;
@@ -2148,15 +2148,16 @@ button, input, select, textarea {
 }
 
 .service-card-horizontal .card-icon {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
   border-radius: 14px;
   background: rgba(255,255,255,0.04);
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   transition: all 0.3s ease;
 }
 
@@ -2191,6 +2192,156 @@ button, input, select, textarea {
 .service-card-horizontal.active .active-badge {
   opacity: 1;
   transform: translateY(-50%) scale(1);
+}
+
+/* Sub-service Selection Wrapper (App & Web Development) */
+.sub-service-selection-wrapper {
+  margin-top: 1.75rem;
+  margin-bottom: 2.5rem;
+  animation: subServiceFadeDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes subServiceFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sub-service-container {
+  background: rgba(15, 15, 26, 0.75);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 22px;
+  padding: 1.5rem 1.75rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.sub-service-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sub-service-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #a5b4fc;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.85rem;
+  border-radius: 50px;
+}
+
+.sub-service-prompt p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.sub-service-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.sub-service-tab {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.4rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: inherit;
+  font-family: inherit;
+  width: 100%;
+}
+
+.sub-service-tab:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(99, 102, 241, 0.35);
+  transform: translateY(-2px);
+}
+
+.sub-service-tab.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.14) 0%, rgba(6, 182, 212, 0.06) 100%);
+  border-color: var(--accent-indigo);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+}
+
+.sub-tab-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  transition: all 0.3s ease;
+}
+
+.sub-service-tab.active .sub-tab-icon {
+  background: var(--accent-grad);
+  color: #fff;
+  box-shadow: var(--accent-glow);
+}
+
+.sub-tab-details {
+  flex-grow: 1;
+}
+
+.sub-tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.sub-tab-name {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sub-tab-status {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.sub-service-tab.active .sub-tab-status {
+  color: #4ade80;
+}
+
+.sub-tab-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
 }
 
 /* Pricing 3-Tier Grid */
@@ -2327,6 +2478,58 @@ button, input, select, textarea {
   margin-bottom: 2rem;
 }
 
+/* Package Meta Pills (Delivery & Revisions) */
+.package-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #d1d5db;
+}
+
+.meta-pill i {
+  color: var(--accent-cyan);
+  font-size: 0.8rem;
+}
+
+.pricing-package-card.highlighted .meta-pill i {
+  color: #22c55e;
+}
+
+/* What's Included Label */
+.whats-included-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.whats-included-label i {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 .package-deliverables {
   list-style: none;
   padding: 0;
@@ -2353,6 +2556,20 @@ button, input, select, textarea {
 
 .pricing-package-card.highlighted .package-deliverables li i {
   color: #22c55e;
+}
+
+/* Included vs Excluded Deliverable items */
+.package-deliverables li.deliverable-item.included {
+  color: var(--text-secondary);
+}
+
+.package-deliverables li.deliverable-item.excluded {
+  color: rgba(156, 163, 175, 0.38);
+}
+
+.package-deliverables li.deliverable-item.excluded i {
+  color: rgba(239, 68, 68, 0.5);
+  font-size: 0.85rem;
 }
 
 .package-footer {
@@ -2406,13 +2623,23 @@ button, input, select, textarea {
   transform: translateY(-2px);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1200px) {
   .service-categories-list-horizontal {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.15rem;
   }
+}
+
+@media screen and (max-width: 1024px) {
   .pricing-packages-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .service-categories-list-horizontal {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -148,13 +148,159 @@ const SERVICES_DATA = {
         ]
       }
     }
+  },
+  mobile_app: {
+    title: "Mobile Application Development",
+    icon: "fa-mobile-screen-button",
+    badge: "📱 Mobile Application Development",
+    packages: {
+      basic: {
+        title: "Starter Page App",
+        price: 100,
+        offerPrice: 100,
+        term: "/ flat",
+        delivery: "7-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Basic Mobile App with 4-5 Screen following client's provided UX/UI design, no API integration",
+        deliverables: [
+          { text: "Functional Android app", included: true },
+          { text: "Functional IOS App", included: true },
+          { text: "App design", included: true },
+          { text: "App submission", included: true },
+          { text: "App icon", included: false },
+          { text: "Splash screen", included: true },
+          { text: "Ad network integration", included: false },
+          { text: "Source code", included: true }
+        ]
+      },
+      standard: {
+        title: "Standard Solutions",
+        price: 1520,
+        originalPrice: 1520,
+        offerPrice: 850,
+        term: "/ flat",
+        delivery: "10-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Standard Mobile App 20 Screen, following client's UI, basic 5-10 API integrations, Client's API's",
+        deliverables: [
+          { text: "Functional Android app", included: true },
+          { text: "Functional IOS App", included: true },
+          { text: "App design", included: true },
+          { text: "App submission", included: true },
+          { text: "App icon", included: true },
+          { text: "Splash screen", included: true },
+          { text: "Ad network integration", included: true },
+          { text: "Source code", included: true }
+        ]
+      },
+      premium: {
+        title: "Advance Solutions",
+        price: 3520,
+        originalPrice: 3520,
+        offerPrice: 2999,
+        term: "/ flat",
+        delivery: "21-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Express Business Custom App design and development up to 25 screens (scalable) Client's API's",
+        deliverables: [
+          { text: "Functional Android app", included: true },
+          { text: "Functional IOS App", included: true },
+          { text: "App design", included: true },
+          { text: "App submission", included: true },
+          { text: "App icon", included: true },
+          { text: "Splash screen", included: true },
+          { text: "Ad network integration", included: true },
+          { text: "Source code", included: true }
+        ]
+      }
+    }
+  },
+  web_dev: {
+    title: "Web Development",
+    icon: "fa-globe",
+    badge: "💻 Web Development",
+    packages: {
+      basic: {
+        title: "Start Up",
+        price: 80,
+        offerPrice: 80,
+        term: "/ flat",
+        delivery: "2-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Start Up 1 static pages website",
+        deliverables: [
+          { text: "Functional website", included: true },
+          { text: "1 page", included: true },
+          { text: "Responsive design", included: true },
+          { text: "Content upload", included: true },
+          { text: "1 plugin/extension", included: false },
+          { text: "E-commerce functionality", included: true },
+          { text: "4 products", included: true },
+          { text: "Payment Integration", included: false },
+          { text: "Opt-in form", included: false },
+          { text: "Autoresponder integration", included: false },
+          { text: "Speed optimization", included: false },
+          { text: "Hosting setup", included: false },
+          { text: "Social media icons", included: false }
+        ]
+      },
+      standard: {
+        title: "Business Website",
+        price: 350,
+        offerPrice: 350,
+        term: "/ flat",
+        delivery: "5-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Business website 3 static pages website",
+        deliverables: [
+          { text: "Functional website", included: true },
+          { text: "3 pages", included: true },
+          { text: "Responsive design", included: true },
+          { text: "Content upload", included: true },
+          { text: "1 plugin/extension", included: false },
+          { text: "E-commerce functionality", included: true },
+          { text: "10 products", included: true },
+          { text: "Payment Integration", included: true },
+          { text: "Opt-in form", included: true },
+          { text: "Autoresponder integration", included: true },
+          { text: "Speed optimization", included: true },
+          { text: "Hosting setup", included: false },
+          { text: "Social media icons", included: false }
+        ]
+      },
+      premium: {
+        title: "Premium WordPress Website",
+        price: 650,
+        offerPrice: 650,
+        term: "/ flat",
+        delivery: "7-day delivery",
+        revisions: "Unlimited Revisions",
+        tagline: "Premium WordPress website 10 plus pages with responsive design and 1 plugin",
+        deliverables: [
+          { text: "Functional website", included: true },
+          { text: "10 pages", included: true },
+          { text: "Responsive design", included: true },
+          { text: "Content upload", included: true },
+          { text: "1 plugin/extension", included: true },
+          { text: "E-commerce functionality", included: true },
+          { text: "12 products", included: true },
+          { text: "Payment Integration", included: true },
+          { text: "Opt-in form", included: true },
+          { text: "Autoresponder integration", included: true },
+          { text: "Speed optimization", included: true },
+          { text: "Hosting setup", included: true },
+          { text: "Social media icons", included: true }
+        ]
+      }
+    }
   }
 };
 
-// Global variables for Video Players
+// Global variables for Video Players & Services State
 let heroBgPlayer = null;
 let modalPlayer = null;
 let activeCategoryKey = "professional_edit";
+let activeDevSubService = "mobile_app";
 
 // --- Global Dynamic Configuration with Fallbacks ---
 let siteConfig = {
@@ -246,10 +392,20 @@ let siteConfig = {
       standard: "",
       premium: ""
     },
-    color_grading: {
-      basic: "",
-      standard: "",
-      premium: ""
+    "color_grading": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    },
+    "mobile_app": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    },
+    "web_dev": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
     }
   }
 };
@@ -398,15 +554,17 @@ function onYouTubeIframeAPIReady() {
 
 // --- 3. Interactive Pricing Packages Renderer ---
 function updatePricingGrid() {
-  const category = SERVICES_DATA[activeCategoryKey];
+  const currentKey = (activeCategoryKey === "app_web_dev") ? activeDevSubService : activeCategoryKey;
+  const category = SERVICES_DATA[currentKey];
   const grid = document.getElementById("pricingPackagesGrid");
-  if (!grid) return;
+  if (!grid || !category) return;
   
   grid.innerHTML = "";
   
   const packageKeys = ["basic", "standard", "premium"];
   packageKeys.forEach(pkgKey => {
     const pkg = category.packages[pkgKey];
+    if (!pkg) return;
     const card = document.createElement("div");
     
     // Standard gets highlighted as popular/recommended
@@ -415,8 +573,44 @@ function updatePricingGrid() {
     
     // Deliverables list items HTML
     const deliverablesListHtml = pkg.deliverables
-      .map(item => `<li><i class="fa-solid fa-check"></i> <span>${item}</span></li>`)
+      .map(item => {
+        if (typeof item === 'object' && item !== null) {
+          const isInc = item.included !== false;
+          return `
+            <li class="deliverable-item ${isInc ? 'included' : 'excluded'}">
+              <i class="fa-solid ${isInc ? 'fa-check' : 'fa-xmark'}"></i>
+              <span>${item.text}</span>
+            </li>
+          `;
+        }
+        return `
+          <li class="deliverable-item included">
+            <i class="fa-solid fa-check"></i>
+            <span>${item}</span>
+          </li>
+        `;
+      })
       .join("");
+      
+    const displayPrice = (pkg.offerPrice !== undefined ? pkg.offerPrice : pkg.price);
+    const originalPrice = pkg.originalPrice || (pkg.offerPrice !== undefined && pkg.price > pkg.offerPrice ? pkg.price : null);
+    const hasOriginalPrice = originalPrice && originalPrice > displayPrice;
+    const formattedPrice = typeof displayPrice === 'number' ? displayPrice.toLocaleString() : displayPrice;
+    const formattedOriginalPrice = typeof originalPrice === 'number' ? originalPrice.toLocaleString() : originalPrice;
+    
+    const metaRowHtml = (pkg.delivery || pkg.revisions) ? `
+      <div class="package-meta-row">
+        ${pkg.delivery ? `<span class="meta-pill"><i class="fa-regular fa-clock"></i> ${pkg.delivery}</span>` : ''}
+        ${pkg.revisions ? `<span class="meta-pill"><i class="fa-solid fa-arrows-rotate"></i> ${pkg.revisions}</span>` : ''}
+      </div>
+    ` : '';
+
+    const whatsIncludedHeader = (pkg.delivery || pkg.revisions) ? `
+      <div class="whats-included-label">
+        <span>What's Included</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+    ` : '';
       
     card.innerHTML = `
       ${isStandard ? '<span class="popular-tag">MOST POPULAR</span>' : ''}
@@ -424,25 +618,22 @@ function updatePricingGrid() {
         <h4>${pkg.title}</h4>
         <p class="package-tagline">${pkg.tagline}</p>
         <div class="package-price-block">
-          <span class="original-price">$${pkg.price} USD</span>
+          ${hasOriginalPrice ? `<span class="original-price">$${formattedOriginalPrice} USD</span>` : ''}
           <div class="offer-price-container">
             <span class="currency">$</span>
-            <span class="price">${pkg.offerPrice}</span>
-            <span class="term">/ flat</span>
+            <span class="price">${formattedPrice}</span>
+            <span class="term">${pkg.term || '/ flat'}</span>
           </div>
         </div>
       </div>
       <div class="package-body">
+        ${metaRowHtml}
+        ${whatsIncludedHeader}
         <ul class="package-deliverables">
           ${deliverablesListHtml}
         </ul>
       </div>
       <div class="package-footer">
-        ${/*
-        <button class="btn-submit btn-package-pay" onclick="checkoutPackage('${pkgKey}')" style="padding: 0.7rem 1.25rem; font-size: 0.85rem; width: 100%; border: none; margin-bottom: 0.25rem;">
-          <i class="fa-solid fa-credit-card"></i> Pay Online Now
-        </button>
-        */ ''}
         <button class="btn-package-whatsapp" onclick="sharePackage('${pkgKey}', 'whatsapp')">
           <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
         </button>
@@ -457,15 +648,24 @@ function updatePricingGrid() {
 
 // Global share package function
 window.sharePackage = function(pkgKey, channel) {
-  const category = SERVICES_DATA[activeCategoryKey];
+  const currentKey = (activeCategoryKey === 'app_web_dev') ? activeDevSubService : activeCategoryKey;
+  const category = SERVICES_DATA[currentKey];
   const pkg = category.packages[pkgKey];
+  const finalPrice = (pkg.offerPrice !== undefined ? pkg.offerPrice : pkg.price);
+  const formattedPrice = typeof finalPrice === 'number' ? finalPrice.toLocaleString() : finalPrice;
   
   let msg = `*VidStudio Custom Order Inquiry*\n\n`;
   msg += `• *Category:* ${category.title}\n`;
   msg += `• *Package:* ${pkg.title}\n`;
-  msg += `• *Original Price:* $${pkg.price} USD\n`;
-  msg += `• *Offer Price:* $${pkg.offerPrice} USD (Flat)\n`;
-  msg += `• *Tagline:* ${pkg.tagline}\n\n`;
+  if (pkg.originalPrice) {
+    msg += `• *Original Price:* $${pkg.originalPrice.toLocaleString()} USD\n`;
+    msg += `• *Offer Price:* $${formattedPrice} USD (Flat)\n`;
+  } else {
+    msg += `• *Price:* $${formattedPrice} USD (Flat)\n`;
+  }
+  msg += `• *Tagline:* ${pkg.tagline}\n`;
+  if (pkg.delivery) msg += `• *Delivery:* ${pkg.delivery}\n`;
+  if (pkg.revisions) msg += `• *Revisions:* ${pkg.revisions}\n\n`;
   msg += `Hey VidStudio! I would like to order the *${pkg.title}* package for *${category.title}* customized for my project.`;
   
   if (channel === 'whatsapp') {
@@ -556,132 +756,32 @@ function setupSecureModal() {
 }
 
 // --- 5. DOM Event Listeners & Main Orchestration ---
-document.addEventListener("DOMContentLoaded", async () => {
-  // Load config first
-  await loadAndApplyConfig();
-
-  
-  // --- A. Mobile Burger Navigation ---
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileNav = document.getElementById("mobileNav");
-  const mobileLinks = document.querySelectorAll(".mobile-link");
-  
-  menuToggle.addEventListener("click", () => {
-    menuToggle.classList.toggle("open");
-    mobileNav.classList.toggle("open");
-  });
-  
-  mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      menuToggle.classList.remove("open");
-      mobileNav.classList.remove("open");
-    });
-  });
-
-  // --- B. Sticky Header & Section Scroller Active State Tracker ---
-  const header = document.querySelector(".main-header");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section, header");
-  
-  window.addEventListener("scroll", () => {
-    // Add scrolled class for glass background
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-    
-    // Active link scroller tracking
-    let currentSectionId = "home";
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
-      if (window.scrollY >= sectionTop - 20) {
-        currentSectionId = section.getAttribute("id");
-      }
-    });
-    
-    navLinks.forEach(link => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${currentSectionId}`) {
-        link.classList.add("active");
-      }
-    });
-  });
-
-  // --- C. Scroll Reveal Observer ---
-  // Create dynamic reveal effects
-  const revealElements = document.querySelectorAll("section .container, .project-card, .service-card, .glass-photo-card");
-  
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px"
-  });
-  
-  revealElements.forEach(el => {
-    el.classList.add("reveal");
-    revealObserver.observe(el);
-  });
-
-  // --- D. Global WhatsApp Chat Widget popover ---
-  const whatsappWidget = document.getElementById("whatsappWidget");
-  const whatsappPopover = document.getElementById("whatsappPopover");
-  const closePopover = document.getElementById("closePopover");
-  const whatsappInput = document.getElementById("whatsappInput");
-  const sendWhatsappBtn = document.getElementById("sendWhatsappBtn");
-  
-  // Clicking the floating WhatsApp trigger opens popover
-  const waTrigger = whatsappWidget ? whatsappWidget.querySelector(".whatsapp-trigger") : null;
-  if (waTrigger) {
-    waTrigger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      whatsappPopover.classList.toggle("open");
-    });
-  }
-
-  
-  closePopover.addEventListener("click", (e) => {
-    e.stopPropagation();
-    whatsappPopover.classList.remove("open");
-  });
-  
-  // Click outside widget closes popover
-  document.addEventListener("click", (e) => {
-    if (!whatsappWidget.contains(e.target)) {
-      whatsappPopover.classList.remove("open");
-    }
-  });
-  
-  // Send message inside Popover to actual WhatsApp
-  const handlePopoverSubmit = () => {
-    const text = whatsappInput.value.trim();
-    if (text.length > 0) {
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodedText}`, "_blank");
-      whatsappInput.value = "";
-      whatsappPopover.classList.remove("open");
-    }
-  };
-  
-  sendWhatsappBtn.addEventListener("click", handlePopoverSubmit);
-  whatsappInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") handlePopoverSubmit();
-  });
-
-  // --- E. Interactive Services Category Switcher ---
+document.addEventListener("DOMContentLoaded", () => {
+  // --- 1. Immediate Interactive Services & Pricing Grid Initialization ---
   const serviceCards = document.querySelectorAll(".service-card-horizontal");
+  const subServiceWrapper = document.getElementById("subServiceWrapper");
+  const subServiceTabs = document.querySelectorAll(".sub-service-tab");
+  
+  // Render pricing packages grid immediately with default category
+  updatePricingGrid();
+  
   serviceCards.forEach(card => {
     card.addEventListener("click", () => {
       serviceCards.forEach(c => c.classList.remove("active"));
       card.classList.add("active");
       
       activeCategoryKey = card.dataset.category;
+      
+      if (activeCategoryKey === "app_web_dev") {
+        if (subServiceWrapper) {
+          subServiceWrapper.style.display = "block";
+        }
+      } else {
+        if (subServiceWrapper) {
+          subServiceWrapper.style.display = "none";
+        }
+      }
+      
       updatePricingGrid();
       
       // Flash animation on pricing grid to alert update
@@ -695,8 +795,149 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Initialize pricing packages grid
-  updatePricingGrid();
+  subServiceTabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      subServiceTabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      
+      activeDevSubService = tab.dataset.subservice;
+      updatePricingGrid();
+      
+      const grid = document.getElementById("pricingPackagesGrid");
+      if (grid) {
+        grid.style.animation = "none";
+        setTimeout(() => {
+          grid.style.animation = "pulse-pricing 0.4s ease-out";
+        }, 10);
+      }
+    });
+  });
+
+  // --- 2. Asynchronous Non-blocking Config Loader ---
+  loadAndApplyConfig().catch(err => {
+    console.warn("Async config loading notice:", err);
+  });
+
+  // --- A. Mobile Burger Navigation ---
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("open");
+      mobileNav.classList.toggle("open");
+    });
+    
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("open");
+        mobileNav.classList.remove("open");
+      });
+    });
+  }
+
+  // --- B. Sticky Header & Section Scroller Active State Tracker ---
+  const header = document.querySelector(".main-header");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("section, header");
+  
+  if (header) {
+    window.addEventListener("scroll", () => {
+      // Add scrolled class for glass background
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+      
+      // Active link scroller tracking
+      let currentSectionId = "home";
+      sections.forEach(section => {
+        const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 70;
+        const sectionTop = section.offsetTop - headerHeight;
+        if (window.scrollY >= sectionTop - 20) {
+          currentSectionId = section.getAttribute("id");
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSectionId}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+  }
+
+  // --- C. Scroll Reveal Observer ---
+  const revealElements = document.querySelectorAll("section .container, .project-card, .service-card, .glass-photo-card");
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    });
+    
+    revealElements.forEach(el => {
+      el.classList.add("reveal");
+      revealObserver.observe(el);
+    });
+  }
+
+  // --- D. Global WhatsApp Chat Widget popover ---
+  const whatsappWidget = document.getElementById("whatsappWidget");
+  const whatsappPopover = document.getElementById("whatsappPopover");
+  const closePopover = document.getElementById("closePopover");
+  const whatsappInput = document.getElementById("whatsappInput");
+  const sendWhatsappBtn = document.getElementById("sendWhatsappBtn");
+  
+  if (whatsappWidget && whatsappPopover) {
+    const waTrigger = whatsappWidget.querySelector(".whatsapp-trigger");
+    if (waTrigger) {
+      waTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        whatsappPopover.classList.toggle("open");
+      });
+    }
+
+    if (closePopover) {
+      closePopover.addEventListener("click", (e) => {
+        e.stopPropagation();
+        whatsappPopover.classList.remove("open");
+      });
+    }
+    
+    document.addEventListener("click", (e) => {
+      if (!whatsappWidget.contains(e.target)) {
+        whatsappPopover.classList.remove("open");
+      }
+    });
+    
+    const handlePopoverSubmit = () => {
+      if (!whatsappInput) return;
+      const text = whatsappInput.value.trim();
+      if (text.length > 0) {
+        const encodedText = encodeURIComponent(text);
+        window.open(`https://wa.me/${siteConfig.contacts.whatsapp}?text=${encodedText}`, "_blank");
+        whatsappInput.value = "";
+        whatsappPopover.classList.remove("open");
+      }
+    };
+    
+    if (sendWhatsappBtn) sendWhatsappBtn.addEventListener("click", handlePopoverSubmit);
+    if (whatsappInput) {
+      whatsappInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handlePopoverSubmit();
+      });
+    }
+  }
 
   // --- G. Portfolio Project Filter Tabs ---
   const tabButtons = document.querySelectorAll(".tab-btn");
@@ -737,21 +978,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   const waitlistForm = document.getElementById("careerWaitlistForm");
   const waitlistMsg = document.getElementById("waitlistMessage");
   
-  waitlistForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("waitlistEmail").value.trim();
-    if (email) {
-      // Mock Subscription Save
-      waitlistMsg.innerText = "Success! Added to waitlist. We will notify you when a slot opens up.";
-      waitlistMsg.className = "waitlist-alert success";
-      waitlistForm.reset();
-      
-      setTimeout(() => {
-        waitlistMsg.innerText = "";
-        waitlistMsg.className = "waitlist-alert";
-      }, 5000);
-    }
-  });
+  if (waitlistForm && waitlistMsg) {
+    waitlistForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById("waitlistEmail");
+      const email = emailInput ? emailInput.value.trim() : "";
+      if (email) {
+        // Mock Subscription Save
+        waitlistMsg.innerText = "Success! Added to waitlist. We will notify you when a slot opens up.";
+        waitlistMsg.className = "waitlist-alert success";
+        waitlistForm.reset();
+        
+        setTimeout(() => {
+          waitlistMsg.innerText = "";
+          waitlistMsg.className = "waitlist-alert";
+        }, 5000);
+      }
+    });
+  }
 
   // --- I. Contact Form Submissions Router ---
   const contactForm = document.getElementById("contactForm");
@@ -827,10 +1071,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // --- 6. Payment & Checkout Integration ---
 window.checkoutPackage = function(pkgKey) {
+  const currentKey = (activeCategoryKey === 'app_web_dev') ? activeDevSubService : activeCategoryKey;
   // Check if a real payment link exists in the active config
   let link = "";
-  if (siteConfig.payment_links && siteConfig.payment_links[activeCategoryKey]) {
-    link = siteConfig.payment_links[activeCategoryKey][pkgKey];
+  if (siteConfig.payment_links && siteConfig.payment_links[currentKey]) {
+    link = siteConfig.payment_links[currentKey][pkgKey];
   }
   
   if (link && link.trim() !== "") {
@@ -843,8 +1088,11 @@ window.checkoutPackage = function(pkgKey) {
 };
 
 function openPaymentModal(pkgKey) {
-  const category = SERVICES_DATA[activeCategoryKey];
+  const currentKey = (activeCategoryKey === 'app_web_dev') ? activeDevSubService : activeCategoryKey;
+  const category = SERVICES_DATA[currentKey];
   const pkg = category.packages[pkgKey];
+  const finalPrice = (pkg.offerPrice !== undefined ? pkg.offerPrice : pkg.price);
+  const formattedPrice = typeof finalPrice === 'number' ? finalPrice.toLocaleString() : finalPrice;
   
   const modal = document.getElementById("paymentModal");
   const form = document.getElementById("paymentForm");
@@ -854,8 +1102,8 @@ function openPaymentModal(pkgKey) {
   // Set summary info
   document.getElementById("payServiceTitle").innerText = category.title;
   document.getElementById("payPackageTitle").innerText = pkg.title;
-  document.getElementById("payPackagePrice").innerText = `$${pkg.offerPrice}`;
-  document.getElementById("payBtnAmount").innerText = `$${pkg.offerPrice}.00`;
+  document.getElementById("payPackagePrice").innerText = `$${formattedPrice}`;
+  document.getElementById("payBtnAmount").innerText = `$${formattedPrice}.00`;
   
   // Reset form and card displays
   form.reset();

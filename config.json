@@ -91,6 +91,16 @@
       "basic": "",
       "standard": "",
       "premium": ""
+    },
+    "mobile_app": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
+    },
+    "web_dev": {
+      "basic": "",
+      "standard": "",
+      "premium": ""
     }
   }
 }
